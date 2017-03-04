@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../style-utils';
 import c from '../style-utils/colors';
@@ -18,24 +19,24 @@ class Navbar extends Component {
           </header>
           <NavLinks>
             <li>
-              <a href="">
+              <NavLink activeClassName="active" exact to="/">
                 <img src={bookmarkImg} alt="dodaj paczkę"/>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="">
+              <NavLink activeClassName="active" to="/statystyki">
                 <img src={chartImg} alt=""/>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="">
+              <NavLink activeClassName="active" to="/opcje">
                 <img src={gearImg} alt=""/>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="">
+              <NavLink activeClassName="active" to="/info">
                 <img src={infoImg} alt=""/>
-              </a>
+              </NavLink>
             </li>
           </NavLinks>
         </NavContainer>
@@ -62,15 +63,16 @@ const NavContainer = styled(Container)`
 const NavLinks = styled.ul`
   display: flex;
   li {
-    transition: 0.2s ease-out all;
     height: 43px;
     width: calc(43px*1.21);
-    &:hover { background: ${c.hoverRed} }
     a {
+      transition: 0.2s ease-out all;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      &:hover { background: ${c.hoverRed} }
+      &.active { background: ${c.hoverRed} }
     }
     img {
       height: 51.2%;

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import parcels from './parcels';
+import packages from './packages';
 
 export default combineReducers({
-  parcels
+  packages
 });

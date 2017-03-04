@@ -28,6 +28,7 @@ injectGlobal`
   	line-height: 1;
     font-family: "Roboto", sans-serif;
     color: #fff;
+    background: #fafafa;
     font-size: 62.5%;
   }
   ol, ul {
