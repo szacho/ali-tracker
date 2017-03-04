@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Navbar from './navbar';
 
 class App extends Component {
   render() {
     return (
-      <div>The competition has begun.</div>
+      <div>
+        <Navbar />
+      </div>
     );
   }
 }
