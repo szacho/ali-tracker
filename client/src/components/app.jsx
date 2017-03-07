@@ -31,16 +31,14 @@ class App extends Component {
         <Navbar />
         <MainContainer height={this.state.windowHeight}>
           <Sidebar />
-          <MainContent>
-            <Switch>
-              <Route exact path="/" component={views.homepage}/>
-              <Route path="/statystyki" component={views.statistics}/>
-              <Route path="/opcje" component={views.options}/>
-              <Route path="/info" component={views.info}/>
-              <Route path="/:token" component={views.tokenpage}/>
-              {/* <Route component={NoMatch}/> */}
-            </Switch>
-          </MainContent>
+          <Switch>
+            <Route exact path="/" component={views.homepage}/>
+            <Route path="/statystyki" component={views.statistics}/>
+            <Route path="/opcje" component={views.options}/>
+            <Route path="/info" component={views.info}/>
+            <Route path="/:token" component={views.tokenpage}/>
+            {/* <Route component={NoMatch}/> */}
+          </Switch>
         </MainContainer>
       </div>
     );
@@ -55,10 +53,4 @@ const MainContainer = styled(Container)`
   font-size: 2rem;
   display: flex;
 
-`;
-
-const MainContent = styled.main`
-  width: 70%;
-  height: 100%;
-  background: #fff;
 `;

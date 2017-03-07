@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import cls from '../style-utils/colors'
 
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <FormGroup>
+    <LabelForm>{label}</LabelForm>
+    <FlatInput error={error && touched} {...input} type={type}/>
+    { error && touched && <ErrorLabel>{error}</ErrorLabel> }
+  </FormGroup>
+);
+
 class AddPackage extends Component {
   handleAddPackage(values) {
-    console.log(values);
-  }
-
-  renderField({ input, label, type, meta: { touched, error, warning } }) {
-    return(
-      <FormGroup>
-        <LabelForm>{label}</LabelForm>
-        <FlatInput error={error && touched} {...input} type={type}/>
-        { error && touched && <ErrorLabel>{error}</ErrorLabel> }
-      </FormGroup>
-    );
+    const { packageName, packageNumber } = values;
+    this.props.checkPackageNumber(packageName, packageNumber);
   }
 
   render() {
     const { handleSubmit } = this.props;
     return(
       <AddPackageForm onSubmit={handleSubmit(this.handleAddPackage.bind(this))}>
-        <Field name="packageName" component={this.renderField.bind(this)} label="Nazwa przesyłki" type="text" />
-        <Field name="packageNumber" component={this.renderField.bind(this)} label="Numer przesyłki" type="text" />
+        <Field name="packageName" component={renderField} label="Nazwa przesyłki" type="text" />
+        <Field name="packageNumber" component={renderField} label="Numer przesyłki" type="text" />
 
         <SubmitButton>Dodaj</SubmitButton>
       </AddPackageForm>
@@ -39,10 +41,10 @@ const validate = values => {
   return errors;
 }
 
-export default reduxForm({
+export default connect(null, actions)(reduxForm({
   form: 'add-package',
   validate
-})(AddPackage);
+})(AddPackage))
 
 const ErrorLabel = styled.span`
   color: ${ cls.error };
@@ -65,7 +67,7 @@ const SubmitButton = styled.button`
 
   &:hover {
     background: ${ cls.hoverRed };
-    cursor: pointer; 
+    cursor: pointer;
   }
 `;
 

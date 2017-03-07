@@ -1,31 +1,42 @@
 import React from 'react';
+import styled from 'styled-components';
+import PackageList from './packageList';
 
 export function homepage() {
   return(
-    <div>homepage</div>
+    <MainContent>
+      <PackageList />
+    </MainContent>
   );
 }
 
 export function statistics() {
   return(
-    <div>Statistics</div>
+    <MainContent>Statistics</MainContent>
   );
 }
 
 export function options() {
   return(
-    <div>Options</div>
+    <MainContent>Options</MainContent>
   );
 }
 
 export function info() {
   return(
-    <div>Info</div>
+    <MainContent>Info</MainContent>
   );
 }
 
 export function tokenpage(props) {
   return(
-    <div>token: {props.match.params.token}</div>
+    <MainContent>token: {props.match.params.token}</MainContent>
   );
 }
+
+const MainContent = styled.main`
+  width: 70%;
+  height: 100%;
+  background: #fff;
+  padding: 20px;
+`;
