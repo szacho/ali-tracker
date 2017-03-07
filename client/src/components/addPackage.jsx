@@ -12,14 +12,14 @@ class AddPackage extends Component {
     return(
       <FormGroup>
         <LabelForm>{label}</LabelForm>
-        <FlatInput {...input} type={type}/>
+        <FlatInput error={error && touched} {...input} type={type}/>
+        { error && touched && <ErrorLabel>{error}</ErrorLabel> }
       </FormGroup>
     );
   }
 
   render() {
     const { handleSubmit } = this.props;
-    console.log(this.props);
     return(
       <AddPackageForm onSubmit={handleSubmit(this.handleAddPackage.bind(this))}>
         <Field name="packageName" component={this.renderField.bind(this)} label="Nazwa przesyłki" type="text" />
@@ -31,9 +31,24 @@ class AddPackage extends Component {
   }
 }
 
+const validate = values => {
+  const errors = {};
+  if(!values.packageNumber) {
+    errors.packageNumber = 'Podaj numer przesyłki!'
+  }
+  return errors;
+}
+
 export default reduxForm({
-  form: 'add-package'
+  form: 'add-package',
+  validate
 })(AddPackage);
+
+const ErrorLabel = styled.span`
+  color: ${ cls.error };
+  font-size: 0.92rem;
+  padding-top: 5px;
+`;
 
 const SubmitButton = styled.button`
   border: none;
@@ -44,6 +59,14 @@ const SubmitButton = styled.button`
   color: #fff;
   border-radius: 3px;
   align-self: flex-end;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:hover {
+    background: ${ cls.hoverRed };
+    cursor: pointer; 
+  }
 `;
 
 const LabelForm = styled.label`
@@ -52,7 +75,7 @@ const LabelForm = styled.label`
 `;
 
 const FlatInput = styled.input`
-  border: 1px solid #ddd;
+  border: 1px solid ${props => props.error ? cls.error : '#ddd' };
   border-radius: 3px;
   margin: 0;
   padding: 3px 8px;
