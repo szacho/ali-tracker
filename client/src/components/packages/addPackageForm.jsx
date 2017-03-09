@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
-import cls from '../style-utils/colors'
+import cls from '../../style-utils/colors'
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <FormGroup>
@@ -18,6 +18,11 @@ class AddPackage extends Component {
   handleAddPackage(values) {
     const { packageName, packageNumber } = values;
     this.props.checkPackageNumber(packageName, packageNumber);
+  }
+
+  //DEVELOPMENT ONLY
+  componentWillMount() {
+    this.props.checkPackageNumber('Happy Package', 'testp0');
   }
 
   render() {
