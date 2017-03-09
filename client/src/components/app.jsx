@@ -10,7 +10,7 @@ import * as views from './views';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { windowHeight: window.innerHeight - 43 };
+    this.state = { windowHeight: window.innerHeight - 83 };
   }
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   handleResize = () => {
-    this.setState({ windowHeight: window.innerHeight - 43 });
+    this.setState({ windowHeight: window.innerHeight - 83 });
   };
 
   render() {

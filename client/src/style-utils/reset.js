@@ -28,7 +28,7 @@ injectGlobal`
   	line-height: 1;
     font-family: "Roboto", sans-serif;
     color: #3D3D3D;
-    background: #fafafa;
+    background: #f5f5f5;
     font-size: 62.5%;
     font-family: 'Ubuntu', sans-serif;
   }

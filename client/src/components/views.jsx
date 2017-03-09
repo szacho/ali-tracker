@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import cls from '../style-utils/colors';
 import PackageList from './packageList';
 
 export function homepage() {
@@ -37,6 +38,6 @@ export function tokenpage(props) {
 const MainContent = styled.main`
   width: 70%;
   height: 100%;
-  background: #fff;
+  background: ${ cls.background.second };
   padding: 20px;
 `;
