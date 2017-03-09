@@ -17,7 +17,7 @@ export default function(app) {
         if(err) {console.log(err);}
         const { status } = response.return;
         if(status === 0) {
-          const parcel = extractParcel(req.body.packageName, req.body.packageNumber, response.return.danePrzesylki);
+          const parcel = extractPackage(req.body.packageName, req.body.packageNumber, response.return.danePrzesylki);
           res.send(parcel);
         } else if(status === 1) {
           res.status(422).send({ error: "Istnieją różne przesyłki o podanym numerze." });
@@ -29,7 +29,7 @@ export default function(app) {
   });
 }
 
-function extractParcel(name, number, value) {
+function extractPackage(name, number, value) {
   const parcel = {
     name,
     number: value.numer,
