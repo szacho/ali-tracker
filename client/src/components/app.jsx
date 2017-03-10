@@ -8,28 +8,11 @@ import Sidebar from './sidebar';
 import * as views from './views';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { windowHeight: window.innerHeight - 83 };
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  componentWillUnmount(){
-    window.removeEventListener('resize', this.handleResize);
-  }
-
-  handleResize = () => {
-    this.setState({ windowHeight: window.innerHeight - 83 });
-  };
-
   render() {
     return (
       <div>
         <Navbar />
-        <MainContainer height={this.state.windowHeight}>
+        <MainContainer>
           <Sidebar />
           <Switch>
             <Route exact path="/" component={views.homepage}/>
@@ -48,9 +31,7 @@ class App extends Component {
 export default App;
 
 const MainContainer = styled(Container)`
-  height: ${props => props.height}px;
   margin: 0 auto;
   font-size: 2rem;
   display: flex;
-
 `;
