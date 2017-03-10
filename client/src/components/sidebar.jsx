@@ -20,5 +20,5 @@ const Aside = styled.aside`
   width: 30%;
   height: 100%;
   background: ${ c.background.second };
-  padding: 10px 40px 0 0;
+  padding: 20px 40px 0 0;
 `;
