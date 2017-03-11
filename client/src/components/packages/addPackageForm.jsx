@@ -95,7 +95,9 @@ const FormGroup = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin-bottom: 16px;
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
 `;
 
 const AddPackageForm = styled.form`

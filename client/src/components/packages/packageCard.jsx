@@ -34,7 +34,7 @@ const Card = styled.div`
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
-  margin-top: 25px
+  margin-bottom: 25px
   display: flex;
   flex-direction: column;
   padding:12px;
