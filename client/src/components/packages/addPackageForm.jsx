@@ -21,9 +21,9 @@ class AddPackage extends Component {
   }
 
   //DEVELOPMENT ONLY
-  componentWillMount() {
-    this.props.checkPackageNumber('Happy Package', 'testp0');
-  }
+  // componentWillMount() {
+  //   this.props.checkPackageNumber('Happy Package', 'testp0');
+  // }
 
   render() {
     const { handleSubmit } = this.props;
