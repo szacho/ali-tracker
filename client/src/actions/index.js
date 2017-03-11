@@ -4,7 +4,7 @@ export const CHECK_PACKAGE = 'checkpackage';
 
 export function checkPackageNumber(packageName, packageNumber) {
   return (dispatch) => {
-      axios.post(`http://localhost:3090/api/package`, JSON.stringify({ packageName, packageNumber })).then((response) => {
+      axios.post(`http://localhost:3010/api/package`, JSON.stringify({ packageName, packageNumber })).then((response) => {
         return JSON.parse(response.request.response);
       }).then((payload) => {
         dispatch({

@@ -1,7 +1,7 @@
 import mongoose, { Schema } from  'mongoose';
 
 const tokenUserSchema = Schema({
-  token: { type: String, unique: true },
+  token: { type: String, unique: true, lowercase: true },
   packagesNumbers: [String],
   lastUpdate: Date
 });

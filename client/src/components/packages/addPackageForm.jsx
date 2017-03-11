@@ -21,9 +21,14 @@ class AddPackage extends Component {
   }
 
   //DEVELOPMENT ONLY
-  // componentWillMount() {
-  //   this.props.checkPackageNumber('Happy Package', 'testp0');
-  // }
+  componentWillMount() {
+    const { url } = this.props.match;
+    if(url === '/') {
+      // to do save package, handle different actions denpend on the route
+    } else {
+      this.props.checkPackageNumber('Happy Package', 'testp0');
+    }
+  }
 
   render() {
     const { handleSubmit } = this.props;
