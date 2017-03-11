@@ -1,5 +1,8 @@
-import path from 'path';
+import mongoose from 'mongoose';
 import * as providers from './providers';
+import * as models from './models';
+
+mongoose.Promise = global.Promise;
 
 export default function(app) {
   app.get('/api', (req, res) => {
@@ -12,4 +15,17 @@ export default function(app) {
     }
   });
 
+  app.post('/api/token', (req, res) => {
+    const { token, number } = req.body;
+    const newToken = new models.TokenUser({
+      token,
+      packagesNumbers: [ number ],
+      lastUpdate: new Date()
+    });
+
+    newToken.save().then(
+      val => console.log(val), err => console.log(err)
+    );
+
+  });
 }
