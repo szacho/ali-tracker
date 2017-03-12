@@ -8,6 +8,7 @@ import cors from 'cors';
 
 const app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/alitracker');
 mongoose.connection.once('open', () => {
   console.log('MongoDB connected!');

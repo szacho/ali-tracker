@@ -15,25 +15,23 @@ export default function(app) {
     }
   });
 
-  app.post('/api/token', (req, res) => {
-    const { number } = req.body;
-    generateToken((token) => {
-      const newToken = new models.TokenUser({
+  app.post('/api/token', async function(req, res) {
+    try {
+      const { number } = req.body;
+      const token = await generateToken();
+      const tokenToSave = new models.TokenUser({
         token,
         packagesNumbers: [ number ],
         lastUpdate: new Date()
       });
 
-      newToken.save()
-      .then(val => {
-        console.log(`Created new token: ${val.token}`);
-        res.status(200).send(val)
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(422).send({ error: err.message });
-      });
-    });
+      const savedToken = await tokenToSave.save();
+      console.log(`Token has been saved: ${ savedToken }`);
+      res.status(200).send(savedToken);
+    } catch(err) {
+      console.log(err);
+      res.status(422).send({ error: err.message });
+    }
   });
 
   app.get('/api/token/:token', (req, res) => {
@@ -50,16 +48,15 @@ export default function(app) {
 
 }
 
-function generateToken(callback) {
+async function generateToken(res) {
   let token = (0|Math.random()*9e6).toString(36);
-
-  models.TokenUser.findOne({ token })
-    .then(val => {
-      if(val) generateToken(callback);
-      else callback(token);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(422).send({ error: err.message });
-    });
+  let val = await models.TokenUser.findOne({ token });
+  if(val) {
+    console.log(`Token already exists: ${ val }`);
+    generateT();
+  }
+  else {
+    console.log(`Token has been created: ${ token }`);
+    return token;
+  }
 }
