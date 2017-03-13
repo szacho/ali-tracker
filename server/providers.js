@@ -2,7 +2,7 @@ import soap from 'soap';
 import _ from 'lodash';
 
 
-export function ppsa(req, res) {
+export function ppsa(req, res, token, callback) {
   const url = "https://tt.poczta-polska.pl/Sledzenie/services/Sledzenie?wsdl";
   soap.createClient(url, (err, client) => {
     if(err) { console.log(err); }
@@ -11,8 +11,8 @@ export function ppsa(req, res) {
       if(err) {console.log(err);}
       const { status } = response.return;
       if(status === 0) {
-        const parcel = extractPPSAPackage(req.body.packageName, req.body.packageNumber, response.return.danePrzesylki);
-        res.send(parcel);
+        const parcel = extractPPSAPackage(req.body.packageName, req.body.packageNumber, token, response.return.danePrzesylki);
+        callback(parcel);
       } else if(status === 1) {
         res.status(422).send({ error: "Istnieją różne przesyłki o podanym numerze." });
       } else {
@@ -22,8 +22,10 @@ export function ppsa(req, res) {
   });
 }
 
-function extractPPSAPackage(name, number, value) {
+
+function extractPPSAPackage(name, number, token, value) {
   const parcel = {
+    token,
     name,
     number: value.numer,
     done: value.zakonczonoObsluge,
