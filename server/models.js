@@ -2,7 +2,10 @@ import mongoose, { Schema } from  'mongoose';
 
 const tokenUserSchema = Schema({
   token: { type: String, unique: true, lowercase: true },
-  packagesNumbers: [String],
+  packages: [{
+    packageName: String,
+    packageNumber: String
+  }],
   lastUpdate: Date
 });
 

@@ -16,8 +16,10 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 
 class AddPackage extends Component {
   handleAddPackage(values) {
-    const { packageName, packageNumber } = values;
-    this.props.checkPackageNumber(packageName, packageNumber);
+    const { url } = this.props.match;
+    if(url === '/') {
+      this.props.createToken(values.packageName, values.packageNumber, 'PPSA');
+    }
   }
 
   //DEVELOPMENT ONLY
@@ -25,8 +27,8 @@ class AddPackage extends Component {
     const { url } = this.props.match;
     if(url === '/') {
       // to do save package, handle different actions denpend on the route
+      // this.props.createToken('Happy Package', 'testp0', 'PPSA');
     } else {
-      this.props.checkPackageNumber('Happy Package', 'testp0');
     }
   }
 

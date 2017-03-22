@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
 
 import { Container } from '../style-utils';
 import styled from 'styled-components';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
 import PackageList from './packages/packageList';
+import Introduction from './introduction';
 
 class App extends Component {
+  componentWillMount() {
+    if(window.localStorage.getItem('token')) {
+      const token = JSON.parse(window.localStorage.getItem('token'));
+      this.setState({ token: token.token });
+    } else {
+      this.setState({ token: null });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -16,10 +27,10 @@ class App extends Component {
           <Sidebar />
           <MainContent>
             <Switch>
-              <Route exact path='/' render={() => {return <h2>introduction</h2>}} />
               <Route exact path='/statystyki' render={() => {return <h2>stats?</h2>}} />
               <Route exact path='/opcje' render={() => {return <h2>lista lub komunikat</h2>}} />
               <Route exact path='/info' render={() => {return <h2>credits</h2>}} />
+              <Route exact path='/' render={() => (this.state.token ? ( <Redirect to={`/${this.state.token}`} /> ) : ( <Introduction /> ))} />
               <Route path='/:token' component={PackageList} />
             </Switch>
           </MainContent>
