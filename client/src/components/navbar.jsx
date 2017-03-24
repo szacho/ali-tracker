@@ -9,6 +9,7 @@ import chartImg from '../images/bar-chart.png';
 import infoImg from '../images/rounded-info-button.png';
 import gearImg from '../images/settings-work-tool.png';
 
+
 class Navbar extends Component {
   render() {
     return(
@@ -19,22 +20,22 @@ class Navbar extends Component {
           </header>
           <NavLinks>
             <li>
-              <NavLink activeClassName="active" exact to="/">
+              <NavLink activeClassName="active" exact to={`/${this.props.token}`}>
                 <img src={listImg} alt="dodaj paczkę"/>
               </NavLink>
             </li>
             <li>
-              <NavLink activeClassName="active" to="/statystyki">
+              <NavLink activeClassName="active" exact to="/statystyki">
                 <img src={chartImg} alt=""/>
               </NavLink>
             </li>
             <li>
-              <NavLink activeClassName="active" to="/opcje">
+              <NavLink activeClassName="active" exact to="/opcje">
                 <img src={gearImg} alt=""/>
               </NavLink>
             </li>
             <li>
-              <NavLink activeClassName="active" to="/info">
+              <NavLink activeClassName="active" exact to="/info">
                 <img src={infoImg} alt=""/>
               </NavLink>
             </li>

@@ -4,7 +4,8 @@ const tokenUserSchema = Schema({
   token: { type: String, unique: true, lowercase: true },
   packages: [{
     packageName: String,
-    packageNumber: String
+    packageNumber: String,
+    provider: String
   }],
   lastUpdate: Date
 });
@@ -15,6 +16,7 @@ const packageSchema = Schema({
   token: { type: String, lowercase: true },
   name: String,
   number: String,
+  provider: String,
   done: Boolean,
   events: [{
     eventName: String,

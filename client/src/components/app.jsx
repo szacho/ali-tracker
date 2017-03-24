@@ -10,10 +10,15 @@ import PackageList from './packages/packageList';
 import Introduction from './introduction';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { token: null };
+  }
+
   componentWillMount() {
     if(window.localStorage.getItem('token')) {
       const token = JSON.parse(window.localStorage.getItem('token'));
-      this.setState({ token: token.token });
+      this.setState({ token });
     } else {
       this.setState({ token: null });
     }
@@ -22,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar token={this.state.token} />
         <MainContainer>
           <Sidebar />
           <MainContent>

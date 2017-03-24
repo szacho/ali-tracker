@@ -6,11 +6,11 @@ mongoose.Promise = global.Promise;
 
 export default function(app) {
 
-  app.get('/api/package/:provider/:packageNumber', async function(req, res) {
+  app.get('/api/package/:provider/:packageNumber', function(req, res) {
     const { packageNumber, provider } = req.params;
     switch (provider) {
       case 'PPSA':
-        providers.ppsa(res, packageNumber, function(parcel) {
+        providers.ppsa(res, packageNumber, provider, function(parcel) {
           res.status(200).send(parcel);
         });
       break;
@@ -18,11 +18,11 @@ export default function(app) {
         res.send({ error: 'Niepoprawny wybór dostawcy' });    }
   });
 
-  app.put('/api/package', async function(req, res) {
-    const { token, packageName, packageNumber } = req.body;
+  app.put('/api/token', async function(req, res) {
+    const { token, packageName, packageNumber, provider } = req.body;
     try {
       const foundToken = await models.TokenUserModel.findOne({ token });
-      foundToken.packages = [ ...foundToken.packages, { packageName, packageNumber } ];
+      foundToken.packages = [ ...foundToken.packages, { packageName, packageNumber, provider } ];
       const updatedToken = await foundToken.save();
       res.send(updatedToken);
     } catch(err) {
@@ -37,27 +37,12 @@ export default function(app) {
       const token = await generateToken();
       const tokenToSave = new models.TokenUserModel({
         token,
-        packages: [{ packageName, packageNumber }],
+        packages: [{ packageName, packageNumber, provider }],
         lastUpdate: new Date()
       });
       const savedToken = await tokenToSave.save();
       console.log(`Token has been saved: ${ savedToken }`);
-
-      switch (provider) {
-        case 'PPSA':
-          providers.ppsa(res, packageNumber, async (parcel) => {
-            const parcelToSave = new models.PackageModel({
-              ...parcel,
-              token: savedToken.token,
-              name: packageName
-            });
-            const savedParcel = await parcelToSave.save();
-            res.status(201).send({ savedToken, savedParcel });
-          });
-          break;
-        default:
-          res.send({ error: 'Niepoprawny wybór dostawcy' });
-      }
+      res.status(201).send({ savedToken });
 
     } catch(err) {
       throw err;

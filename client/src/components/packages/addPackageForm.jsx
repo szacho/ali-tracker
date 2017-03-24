@@ -19,16 +19,8 @@ class AddPackage extends Component {
     const { url } = this.props.match;
     if(url === '/') {
       this.props.createToken(values.packageName, values.packageNumber, 'PPSA');
-    }
-  }
-
-  //DEVELOPMENT ONLY
-  componentWillMount() {
-    const { url } = this.props.match;
-    if(url === '/') {
-      // to do save package, handle different actions denpend on the route
-      // this.props.createToken('Happy Package', 'testp0', 'PPSA');
     } else {
+      console.log('add package');
     }
   }
 
