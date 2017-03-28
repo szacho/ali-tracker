@@ -21,6 +21,10 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
+app.use(function(err, req, res, next) {
+  res.status(422).send({ error: err.message });
+});
+
 
 const PORT = process.env.PORT || 3010;
 const server = http.createServer(app);
