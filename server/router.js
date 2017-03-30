@@ -5,6 +5,7 @@ import * as models from './models';
 mongoose.Promise = global.Promise;
 
 export default function(app) {
+  // ZABLOKUJ DODAWANIE PRZESYŁEK O TYM SAMYM NUMERZZE, OHANDLUJ ERRORY W CLIENCIE
 
   app.get('/api/package/:provider/:packageNumber', function(req, res, next) {
     try {
@@ -59,6 +60,14 @@ export default function(app) {
       console.log(`Token has been saved: ${ savedToken }`);
       res.status(201).send({ savedToken });
 
+    } catch(err) { next(err) }
+  });
+
+  app.patch('/api/token', async function(req, res, next) {
+    try {
+      const { token, packageNumber } = req.body;
+      const data = await models.TokenUserModel.findOneAndUpdate({ token }, { $pull: { packages: { packageNumber } } });
+      res.send({ message: `Successfully removed package with number ${packageNumber}` })
     } catch(err) { next(err) }
   });
 

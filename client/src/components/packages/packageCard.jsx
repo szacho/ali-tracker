@@ -1,30 +1,88 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import styled from 'styled-components';
 import c from '../../style-utils/colors';
 
-const PackageCard = (props) => {
-  return(
-    <Card>
-      <PNumber>{ props.pack.number }</PNumber>
-      <Name>{ props.pack.name }</Name>
-      <Events>
-        {renderEvents(props.pack.events)}
-      </Events>
-    </Card>
-  );
+class PackageCard extends Component {
+  renderEvents(ev) {
+    return ev.map((event, i) => {
+      return(
+        <Event key={i}>
+          <span>{ event.eventName } w <EventPlace>{ event.place ? event.place : '[brak danych]' }</EventPlace></span> <EventDate>{ event.time }</EventDate>
+        </Event>
+      );
+    });
+  }
+
+  handleRemoveButtonClick() {
+    const { token, number } = this.props.pack
+    this.props.removePackageFromToken(token, number);
+  }
+
+  render() {
+    return(
+      <Card>
+        <NumberAndRemoveWrapper>
+          <PNumber>{ this.props.pack.number }</PNumber>
+          <RemoveButton onClick={this.handleRemoveButtonClick.bind(this)}></RemoveButton>
+        </NumberAndRemoveWrapper>
+        <Name>{ this.props.pack.name }</Name>
+        <Events>
+          {this.renderEvents(this.props.pack.events)}
+        </Events>
+      </Card>
+    );
+  }
 };
 
-function renderEvents(ev) {
-  return ev.map((event, i) => {
-    return(
-      <Event key={i}>
-        <span>{ event.eventName } w <EventPlace>{ event.place ? event.place : '[brak danych]' }</EventPlace></span> <EventDate>{ event.time }</EventDate>
-      </Event>
-    );
-  });
-}
 
-export default PackageCard;
+export default connect(null, actions)(PackageCard);
+
+const RemoveButton = styled.button`
+  border:none;
+  padding:0;
+  background: transparent;
+  width: 15px;
+  height: 15px;
+  transform: scale(0.8);
+  &:hover::before, &:hover::after{
+    background: ${ c.hoverRed };
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &::after {
+    content: '';
+    display: block;
+    height: 18px;
+    width: 2.5px;
+    transform: rotate(45deg);
+    position: relative;
+    top: -20.5px;
+    left: 6px;
+    background: #d0d1d5;
+    border-radius: 2px;
+  }
+  &::before {
+    content: '';
+    display: block;
+    height: 18px;
+    width: 2.5px;
+    transform: rotate(-45deg);
+    position: relative;
+    top: -2.5px;
+    left: 6px;
+    border-radius: 2px;
+    background: #d0d1d5;
+  }
+`;
+
+const NumberAndRemoveWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+`;
 
 const Card = styled.div`
   box-sizing: border-box;

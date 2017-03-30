@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3010/api';
 export const ADD_PACKAGE = 'checkpackage';
 export const SET_TOKEN = 'SETtoken';
+export const REMOVE_PACKAGE = 'REMOVE_PACKAGE';
 
 //RF550476480CN
 export function addPackageToToken({packageName, packageNumber, provider}, token) {
@@ -49,6 +50,17 @@ export function loadToken(token) {
         type: ADD_PACKAGE,
         payload: { ...gotPackageData, name: pack.packageName, token }
       });
+    });
+  }
+}
+
+export function removePackageFromToken(token, packageNumber) {
+  return async (dispatch) => {
+    const {data} = await axios.patch(`${API_URL}/token/`, { token, packageNumber });
+    console.log(data);
+    dispatch({
+      type: REMOVE_PACKAGE,
+      payload: packageNumber
     });
   }
 }

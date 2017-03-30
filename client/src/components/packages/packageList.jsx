@@ -14,7 +14,7 @@ class PackageList extends Component {
 
   renderPackages() {
     if(this.props.packages.length > 0) {
-      return this.props.packages.map(pack => {
+      return this.props.packages.map((pack, i) => {
         return <PackageCard pack={pack} key={pack.number} />;
       });
     } else {
