@@ -20,7 +20,7 @@ class AddPackage extends Component {
     if(url === '/') {
       this.props.createToken(values.packageName, values.packageNumber, 'PPSA');
     } else {
-      console.log('add package');
+      this.props.addPackageToToken({ ...values, provider: 'PPSA' }, this.props.token);
     }
   }
 
@@ -45,7 +45,11 @@ const validate = values => {
   return errors;
 }
 
-export default connect(null, actions)(reduxForm({
+function mapStateToProps(state) {
+  return { token: state.token.token };
+}
+
+export default connect(mapStateToProps, actions)(reduxForm({
   form: 'add-package',
   validate
 })(AddPackage))

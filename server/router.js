@@ -21,6 +21,21 @@ export default function(app) {
     } catch(err) { next(err) }
   });
 
+  app.post('/api/package', async function(req, res, next) {
+    try {
+      const { token, number } = req.body.package;
+      const alreadySaved = await models.PackageModel.findOne({ token, number });
+      if(!alreadySaved) {
+        const packageToSave = new models.PackageModel(req.body.package);
+        const savedPackage = await packageToSave.save();
+        res.send(savedPackage)
+      } else {
+        res.send({ message: `Package ${alreadySaved.number} is already saved` });
+      }
+
+    } catch(err) { next(err) }
+  });
+
   app.put('/api/token', async function(req, res, next) {
     const { token, packageName, packageNumber, provider } = req.body;
     try {

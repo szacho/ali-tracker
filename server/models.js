@@ -7,15 +7,15 @@ const tokenUserSchema = Schema({
     packageNumber: String,
     provider: String
   }],
-  lastUpdate: Date
+  lastUpdate: { type: Date, default: Date.now() }
 });
 
 export const TokenUserModel = mongoose.model('tokenuser', tokenUserSchema);
 
 const packageSchema = Schema({
-  token: { type: String, lowercase: true },
+  token: { type: String, lowercase: true, required: true },
   name: String,
-  number: String,
+  number: { type: String, unique: true },
   provider: String,
   done: Boolean,
   events: [{

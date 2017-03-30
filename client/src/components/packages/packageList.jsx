@@ -8,7 +8,6 @@ class PackageList extends Component {
   componentWillMount() {
     if(!this.props.token.token || (this.props.packages.length === 0 && this.props.token.packages.length > 0)) {
       const tokenToLoad = this.props.match.url.slice(1);
-      console.log(tokenToLoad);
       this.props.loadToken(tokenToLoad);
     }
   }

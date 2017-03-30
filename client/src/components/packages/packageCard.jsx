@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import c from '../../style-utils/colors';
 
 const PackageCard = (props) => {
-  console.log(props.pack);
   return(
     <Card>
       <PNumber>{ props.pack.number }</PNumber>
