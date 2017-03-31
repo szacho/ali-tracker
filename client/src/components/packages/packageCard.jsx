@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import styled from 'styled-components';
 import c from '../../style-utils/colors';
+import {RemoveButton} from '../../style-utils/';
 
 class PackageCard extends Component {
   renderEvents(ev) {
@@ -39,44 +40,7 @@ class PackageCard extends Component {
 
 export default connect(null, actions)(PackageCard);
 
-const RemoveButton = styled.button`
-  border:none;
-  padding:0;
-  background: transparent;
-  width: 15px;
-  height: 15px;
-  transform: scale(0.8);
-  &:hover::before, &:hover::after{
-    background: ${ c.hoverRed };
-  }
-  &:hover {
-    cursor: pointer;
-  }
-  &::after {
-    content: '';
-    display: block;
-    height: 18px;
-    width: 2.5px;
-    transform: rotate(45deg);
-    position: relative;
-    top: -20.5px;
-    left: 6px;
-    background: #d0d1d5;
-    border-radius: 2px;
-  }
-  &::before {
-    content: '';
-    display: block;
-    height: 18px;
-    width: 2.5px;
-    transform: rotate(-45deg);
-    position: relative;
-    top: -2.5px;
-    left: 6px;
-    border-radius: 2px;
-    background: #d0d1d5;
-  }
-`;
+
 
 const NumberAndRemoveWrapper = styled.div`
   display: flex;
@@ -91,7 +55,7 @@ const Card = styled.div`
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
-  margin-bottom: 25px
+  margin-top: 20px
   display: flex;
   flex-direction: column;
   padding:12px;

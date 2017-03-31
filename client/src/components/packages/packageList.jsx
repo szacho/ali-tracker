@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions'
 
 import PackageCard from './packageCard';
+import Message from '../message';
 
 class PackageList extends Component {
   componentWillMount() {
@@ -24,7 +25,8 @@ class PackageList extends Component {
 
   render() {
     return(
-      <div>
+      <div style={{marginTop: "20px"}}>
+        <Message />
         {this.renderPackages()}
       </div>
     );

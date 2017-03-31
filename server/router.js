@@ -5,8 +5,7 @@ import * as models from './models';
 mongoose.Promise = global.Promise;
 
 export default function(app) {
-  // ZABLOKUJ DODAWANIE PRZESYŁEK O TYM SAMYM NUMERZZE, OHANDLUJ ERRORY W CLIENCIE
-
+  //OHANDLUJ WSZYSTKIE ERRORY, DODAJ WYBÓR DOSTAWCÓW
   app.get('/api/package/:provider/:packageNumber', function(req, res, next) {
     try {
       const { packageNumber, provider } = req.params;
@@ -17,7 +16,7 @@ export default function(app) {
           });
         break;
         default:
-          res.send({ error: 'Niepoprawny wybór dostawcy' });
+          res.status(422).send({ error: 'Niepoprawny wybór dostawcy.' });
       }
     } catch(err) { next(err) }
   });
@@ -31,9 +30,8 @@ export default function(app) {
         const savedPackage = await packageToSave.save();
         res.send(savedPackage)
       } else {
-        res.send({ message: `Package ${alreadySaved.number} is already saved` });
+        res.send({ message: `Przesyłka o numerze ${alreadySaved.number} jest już zapisana.` });
       }
-
     } catch(err) { next(err) }
   });
 
@@ -41,9 +39,13 @@ export default function(app) {
     const { token, packageName, packageNumber, provider } = req.body;
     try {
       const foundToken = await models.TokenUserModel.findOne({ token });
-      foundToken.packages = [ ...foundToken.packages, { packageName, packageNumber, provider } ];
-      const updatedToken = await foundToken.save();
-      res.send(updatedToken);
+      if(!foundToken.packages.find(el => el.packageNumber === packageNumber)) {
+        foundToken.packages = [ ...foundToken.packages, { packageName, packageNumber, provider } ];
+        const updatedToken = await foundToken.save();
+        res.send(updatedToken);
+      } else {
+        res.status(422).send({ error: `Przesyłka o numerze ${packageNumber} jest już dodana.` })
+      }
     } catch(err) { next(err) }
   });
 
@@ -76,7 +78,7 @@ export default function(app) {
       const token = await models.TokenUserModel.findOne({ token: req.params.token });
       if(token) {
         res.status(200).send({ token });
-      } else res.status(422).send({ error: 'Provided token does not match' });
+      } else res.status(422).send({ error: 'Podany token nie istnieje.' });
     } catch(err) { next(err) }
   });
 }
