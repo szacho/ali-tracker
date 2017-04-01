@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getToken } from '../actions';
 
 import { Container } from '../style-utils';
 import styled from 'styled-components';
@@ -10,24 +11,15 @@ import PackageList from './packages/packageList';
 import Introduction from './introduction';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { token: null };
-  }
-
   componentWillMount() {
-    if(window.localStorage.getItem('token')) {
-      const token = JSON.parse(window.localStorage.getItem('token'));
-      this.setState({ token });
-    } else {
-      this.setState({ token: null });
-    }
+    this.props.getToken();
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
-        <Navbar token={this.state.token} />
+        <Navbar token={this.props.token} />
         <MainContainer>
           <Sidebar />
           <MainContent>
@@ -35,7 +27,7 @@ class App extends Component {
               <Route exact path='/statystyki' render={() => {return <h2>stats?</h2>}} />
               <Route exact path='/opcje' render={() => {return <h2>lista lub komunikat</h2>}} />
               <Route exact path='/info' render={() => {return <h2>credits</h2>}} />
-              <Route exact path='/' render={() => (this.state.token ? ( <Redirect to={`/${this.state.token}`} /> ) : ( <Introduction /> ))} />
+              <Route exact path='/' render={() => (this.props.token ? ( <Redirect to={`/${this.props.token}`} /> ) : ( <Introduction /> ))} />
               <Route path='/:token' component={PackageList} />
             </Switch>
           </MainContent>
@@ -45,7 +37,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return { token: state.token.tokenShort || state.token.token }
+}
+
+export default withRouter(connect(mapStateToProps, { getToken })(App));
 
 const MainContainer = styled(Container)`
   margin: 0 auto;

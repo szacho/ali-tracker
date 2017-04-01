@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3010/api';
 export const ADD_PACKAGE = 'checkpackage';
 export const SET_TOKEN = 'SETtoken';
+export const GET_TOKEN = 'GETtoken';
 export const REMOVE_PACKAGE = 'REMOVE_PACKAGE';
 export const THROW_ERROR = 'THROW_Merr';
 
@@ -36,6 +37,16 @@ export function createToken(packageName, packageNumber, provider) {
     dispatch({
       type: SET_TOKEN,
       payload: data.savedToken
+    });
+  }
+}
+
+export function getToken() {
+  return async (dispatch) => {
+    const token = JSON.parse(window.localStorage.getItem('token'));
+    dispatch({
+      type: GET_TOKEN,
+      payload: token
     });
   }
 }
