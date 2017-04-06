@@ -1,10 +1,12 @@
-import { THROW_ERROR } from '../actions';
+import { THROW_ERROR, NO_ERROR } from '../actions';
 const INITIAL_STATE = { message: null, error: null };
 
 export default function message(state = INITIAL_STATE, action) {
  switch (action.type) {
    case THROW_ERROR:
     return action.payload;
+   case NO_ERROR:
+    return INITIAL_STATE;
    default: return state;
  }
 }
