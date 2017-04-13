@@ -71,16 +71,23 @@ export function loadToken(token) {
         type: SET_TOKEN,
         payload: data.token
       });
-      data.token.packages.map(async (pack) => {
-        const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
-        if(gotPackageData.done) {
-          const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
-          console.log(savedPackage);
+      data.token.packages.map(async (pack) => {   
+        try {
+          const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
+          console.log({ ...gotPackageData});
+          if(gotPackageData.done) {
+            const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
+            console.log(savedPackage);
+          }
+          dispatch({
+            type: ADD_PACKAGE,
+            payload: { ...gotPackageData, name: pack.packageName, token }
+          });
+        } catch(error) {
+          throwError(error, dispatch);
+          const { data: removeBrokenPack } = await axios.patch(`${API_URL}/token/`, { packageNumber: pack.packageNumber, token: data.token.token });
+          console.log(removeBrokenPack);
         }
-        dispatch({
-          type: ADD_PACKAGE,
-          payload: { ...gotPackageData, name: pack.packageName, token }
-        });
       });
       noError(dispatch);
     } catch(error) { throwError(error, dispatch) }

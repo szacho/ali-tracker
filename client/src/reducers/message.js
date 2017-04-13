@@ -6,7 +6,7 @@ export default function message(state = INITIAL_STATE, action) {
    case THROW_ERROR:
     return action.payload;
    case NO_ERROR:
-    return INITIAL_STATE;
+    return { ...state, error: null };
    default: return state;
  }
 }

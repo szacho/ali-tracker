@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import cls from '../../style-utils/colors'
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+const renderInput = ({ input, label, type, meta: { touched, error, warning } }) => (
   <FormGroup>
     <LabelForm>{label}</LabelForm>
     <FlatInput error={error && touched} {...input} type={type}/>
@@ -18,9 +18,9 @@ class AddPackage extends Component {
   handleAddPackage(values) {
     const { url } = this.props.match;
     if(url === '/') {
-      this.props.createToken(values.packageName, values.packageNumber, 'PPSA');
+      this.props.createToken(values.packageName, values.packageNumber, values.provider); //to refactor!!
     } else {
-      this.props.addPackageToToken({ ...values, provider: 'PPSA' }, this.props.token);
+      this.props.addPackageToToken(values, this.props.token);
     }
   }
 
@@ -28,8 +28,10 @@ class AddPackage extends Component {
     const { handleSubmit } = this.props;
     return(
       <AddPackageForm onSubmit={handleSubmit(this.handleAddPackage.bind(this))}>
-        <Field name="packageName" component={renderField} label="Nazwa przesyłki" type="text" />
-        <Field name="packageNumber" component={renderField} label="Numer przesyłki" type="text" />
+        <Field name="provider" component={renderInput} value='PPSA' label="PPSA" type="radio" />
+        <Field name="provider" component={renderInput} value='DHL' label="DHL" type="radio" />
+        <Field name="packageName" component={renderInput} label="Nazwa przesyłki" type="text" />
+        <Field name="packageNumber" component={renderInput} label="Numer przesyłki" type="text" />
 
         <SubmitButton>Dodaj</SubmitButton>
       </AddPackageForm>
