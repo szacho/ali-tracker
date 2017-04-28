@@ -5,9 +5,7 @@ import { Container } from '../style-utils';
 import c from '../style-utils/colors';
 
 import listImg from '../images/list.png';
-import chartImg from '../images/bar-chart.png';
 import infoImg from '../images/rounded-info-button.png';
-import gearImg from '../images/settings-work-tool.png';
 
 
 class Navbar extends Component {
@@ -20,18 +18,8 @@ class Navbar extends Component {
           </header>
           <NavLinks>
             <li>
-              <NavLink activeClassName="active" exact to={`/${this.props.token}`}>
+              <NavLink activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
                 <img src={listImg} alt="dodaj paczkę"/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="active" exact to="/statystyki">
-                <img src={chartImg} alt=""/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="active" exact to="/opcje">
-                <img src={gearImg} alt=""/>
               </NavLink>
             </li>
             <li>

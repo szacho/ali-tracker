@@ -24,8 +24,6 @@ class App extends Component {
           <Sidebar />
           <MainContent>
             <Switch>
-              <Route exact path='/statystyki' render={() => {return <h2>stats?</h2>}} />
-              <Route exact path='/opcje' render={() => {return <h2>lista lub komunikat</h2>}} />
               <Route exact path='/info' render={() => {return <h2>credits</h2>}} />
               <Route exact path='/' render={() => (this.props.token ? ( <Redirect to={`/${this.props.token}`} /> ) : ( <Introduction /> ))} />
               <Route path='/:token' component={PackageList} />

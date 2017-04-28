@@ -9,11 +9,7 @@ class Sidebar extends Component {
   render() {
     return(
       <Aside>
-        <Switch>
-          <Route exact path='/statystyki' render={() => {return <h2>ranking</h2>}} />
-          <Route exact path='/opcje' render={() => {return <h2>opcje</h2>}} />
-          <Route path='*' component={AddPackage} />
-        </Switch>
+        <AddPackage />
       </Aside>
     );
   }
