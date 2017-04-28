@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
+import { withRouter } from 'react-router-dom';
+
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import cls from '../../style-utils/colors'
@@ -21,10 +23,13 @@ const renderRadioInput = ({ input, label, type, id }) => (
   </div>
 );
 
+const NavSubmitButton = withRouter(({ history }) => (
+  <SubmitButton onClick={() => history.push('/')}>Dodaj</SubmitButton>
+));
+
 class AddPackage extends Component {
   handleAddPackage(values) {
-    const url = location.pathname;
-    if(url === '/') {
+    if(!this.props.token) {
       this.props.createToken(values.packageName, values.packageNumber, values.provider); //to refactor!!
     } else {
       this.props.addPackageToToken(values, this.props.token);
@@ -43,7 +48,7 @@ class AddPackage extends Component {
         <Field name="packageName" component={renderInput} id="packageName" label="Nazwa przesyłki" type="text" />
         <Field name="packageNumber" component={renderInput} id="packageNumber" label="Numer przesyłki" type="text" />
 
-        <SubmitButton>Dodaj</SubmitButton>
+        <NavSubmitButton />
       </AddPackageForm>
     );
   }
