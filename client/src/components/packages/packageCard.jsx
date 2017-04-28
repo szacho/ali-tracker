@@ -70,7 +70,7 @@ const PNumber = styled.span`
 `;
 
 const Name = styled.span`
-  border-bottom: 1px solid #e9ebee;
+  border-bottom: 1px solid #dfe0e4;
   padding-bottom: 4px;
   font-size: 1.2rem;
 `;

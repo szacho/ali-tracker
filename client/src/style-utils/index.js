@@ -14,6 +14,9 @@ export const RemoveButton = styled.button`
   background: transparent;
   width: 15px;
   height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transform: scale(0.8);
   &:hover::before, &:hover::after{
     background: ${ c.hoverRed };
@@ -21,28 +24,21 @@ export const RemoveButton = styled.button`
   &:hover {
     cursor: pointer;
   }
-  &::after {
+  &::after, &::before {
     content: '';
     display: block;
-    height: 18px;
+    height: 21.21px;
     width: 2.5px;
-    transform: rotate(45deg);
     position: relative;
-    top: -20.5px;
-    left: 6px;
     background: #d0d1d5;
     border-radius: 2px;
   }
   &::before {
-    content: '';
-    display: block;
-    height: 18px;
-    width: 2.5px;
+    transform: rotate(45deg);
+    left: 1.25px;
+  }
+  &::after {
     transform: rotate(-45deg);
-    position: relative;
-    top: -2.5px;
-    left: 6px;
-    border-radius: 2px;
-    background: #d0d1d5;
+    left: -1.25px;
   }
 `;

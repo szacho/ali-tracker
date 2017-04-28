@@ -54,6 +54,9 @@ const validate = values => {
   if(!values.packageNumber) {
     errors.packageNumber = 'Podaj numer przesyłki!'
   }
+  if(!values.packageName) {
+    errors.packageName = 'Podaj nazwę przesyłki!'
+  }
   return errors;
 }
 
@@ -122,7 +125,7 @@ const RadioGroup = styled.div`
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 16px;
-  color: #555;
+  color: #676;
   div:not(:first-child) {
     margin-left: 8px;
   }

@@ -53,6 +53,12 @@ export function createToken(packageName, packageNumber, provider) {
   }
 }
 
+export function removeMessage() {
+  return (dispatch) => {
+    noError(dispatch);
+  }
+}
+
 export function getToken() {
   return (dispatch) => {
     const token = JSON.parse(window.localStorage.getItem('token'));
@@ -71,7 +77,7 @@ export function loadToken(token) {
         type: SET_TOKEN,
         payload: data.token
       });
-      data.token.packages.map(async (pack) => {   
+      data.token.packages.map(async (pack) => {
         try {
           const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
           console.log({ ...gotPackageData});
