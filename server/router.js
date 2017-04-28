@@ -5,7 +5,7 @@ import * as models from './models';
 mongoose.Promise = global.Promise;
 
 export default function(app) {
-  //DODAJ WYBÓR DOSTAWCÓW, przycisk do zamykanie errora, fix na dodawanie z info, dodaj walidację nazwy przesyłki
+  //DODAJ WYBÓR DOSTAWCÓW
   app.get('/api/package/:provider/:packageNumber', function(req, res, next) {
     try {
       const { packageNumber, provider } = req.params;
@@ -16,7 +16,7 @@ export default function(app) {
           });
         break;
         default:
-          res.status(422).send({ error: 'Niepoprawny wybór dostawcy.' });
+          res.status(422).send({ error: 'Aplikacja na ten czas wspiera jedynie Pocztę Polską (PPSA).' });
       }
     } catch(err) { next(err) }
   });
@@ -24,7 +24,7 @@ export default function(app) {
   app.post('/api/package', async function(req, res, next) {
     try {
       const { token, number } = req.body.package;
-      const alreadySaved = await models.PackageModel.findOne({ token, number });
+      const alreadySaved = await models.PackageModel.findOne({ number });
       if(!alreadySaved) {
         const packageToSave = new models.PackageModel(req.body.package);
         const savedPackage = await packageToSave.save();

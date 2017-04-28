@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import cls from '../../style-utils/colors'
+import { FlatInput } from '../../style-utils/'
 
 const renderInput = ({ input, label, type, id, meta: { touched, error, warning } }) => (
   <FormGroup>
@@ -43,6 +44,7 @@ class AddPackage extends Component {
         <RadioGroup>
           <Field name="provider" component={renderRadioInput} value='PPSA' label="PPSA" type="radio" />
           <Field name="provider" component={renderRadioInput} value='DHL' label="DHL" type="radio" />
+          <Field name="provider" component={renderRadioInput} value='UPS' label="UPS" type="radio" />
         </RadioGroup>
 
         <Field name="packageName" component={renderInput} id="packageName" label="Nazwa przesyłki" type="text" />
@@ -105,15 +107,6 @@ const LabelForm = styled.label`
   padding-bottom: 5px;
 `;
 
-const FlatInput = styled.input`
-  border: 1px solid ${props => props.error ? cls.error : '#ddd' };
-  border-radius: 3px;
-  margin: 0;
-  padding: 3px 8px;
-  height: 20px;
-  font-size: 1.0rem;
-`;
-
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -130,14 +123,14 @@ const RadioGroup = styled.div`
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 16px;
-  color: #676;
+  color: #fff;
   div:not(:first-child) {
     margin-left: 8px;
   }
   input[type="radio"]+label {
     border-radius: 3px;
     width: auto;
-    background-color: #D2D5DA;
+    background-color: #9E9E9E;
     cursor: pointer;
     padding: 5.5px;
     display: block;

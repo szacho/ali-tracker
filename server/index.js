@@ -22,6 +22,7 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 app.use(function(err, req, res, next) {
+  console.log(err);
   res.status(422).send({ error: err.message });
 });
 

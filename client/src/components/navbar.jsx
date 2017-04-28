@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Container } from '../style-utils';
 import c from '../style-utils/colors';
 
+import TokenBar from './tokenBar';
+
 import listImg from '../images/list.png';
 import infoImg from '../images/rounded-info-button.png';
 
@@ -16,6 +18,7 @@ class Navbar extends Component {
           <header>
             <h1>AliTracker</h1>
           </header>
+          <TokenBar />
           <NavLinks>
             <li>
               <NavLink activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>

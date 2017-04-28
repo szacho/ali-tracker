@@ -80,7 +80,6 @@ export function loadToken(token) {
       data.token.packages.map(async (pack) => {
         try {
           const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
-          console.log({ ...gotPackageData});
           if(gotPackageData.done) {
             const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
             console.log(savedPackage);

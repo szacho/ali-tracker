@@ -15,7 +15,7 @@ export const TokenUserModel = mongoose.model('tokenuser', tokenUserSchema);
 const packageSchema = Schema({
   token: { type: String, lowercase: true, required: true },
   name: String,
-  number: { type: String, unique: true },
+  number: String,
   provider: String,
   done: Boolean,
   events: [{

@@ -42,3 +42,12 @@ export const RemoveButton = styled.button`
     left: -1.25px;
   }
 `;
+
+export const FlatInput = styled.input`
+  border: 1px solid ${props => props.error ? c.error : '#ddd' };
+  border-radius: 3px;
+  margin: 0;
+  padding: 3px 8px;
+  height: 20px;
+  font-size: 1.0rem;
+`;
