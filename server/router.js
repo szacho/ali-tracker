@@ -5,7 +5,7 @@ import * as models from './models';
 mongoose.Promise = global.Promise;
 
 export default function(app) {
-  //DODAJ WYBÓR DOSTAWCÓW, przycisk do zamykanie errora, ogarnąć labels
+  //DODAJ WYBÓR DOSTAWCÓW, przycisk do zamykanie errora, ogarnąć labels, fix na dodawanie z info
   app.get('/api/package/:provider/:packageNumber', function(req, res, next) {
     try {
       const { packageNumber, provider } = req.params;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import c from '../style-utils/colors';
-import { Switch, Route } from 'react-router-dom';
 
 import AddPackage from './packages/addPackageForm';
 

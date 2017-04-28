@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Navbar token={this.props.token} />
