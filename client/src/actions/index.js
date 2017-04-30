@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3010/api';
-export const ADD_PACKAGE = 'checkpackage';
-export const SET_TOKEN = 'SETtoken';
-export const GET_TOKEN = 'GETtoken';
+export const ADD_PACKAGE = 'ADD_PACKAGE';
+export const SET_TOKEN = 'SET_TOKEN';
+export const GET_TOKEN = 'GET_TOKEN';
 export const REMOVE_PACKAGE = 'REMOVE_PACKAGE';
-export const THROW_ERROR = 'THROW_Merr';
-export const NO_ERROR = 'no_Merr';
+export const THROW_ERROR = 'THROW_ERROR';
+export const NO_ERROR = 'NO_ERROR';
+export const SIGN_OUT = 'SIGN_OUT';
 
 function noError(dispatch) {
   dispatch({
@@ -19,6 +20,15 @@ function throwError(error, dispatch) {
     type: THROW_ERROR,
     payload: error.response.data
   });
+}
+
+export function signOut() {
+  window.localStorage.removeItem('token');
+  return (dispatch) => {
+    dispatch({
+      type: SIGN_OUT
+    });
+  }
 }
 
 export function addPackageToToken({packageName, packageNumber, provider}, token) {
@@ -69,7 +79,7 @@ export function getToken() {
   }
 }
 
-export function loadToken(token) {
+export function loadToken(token, fromInput = false) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${API_URL}/token/${token}`);
@@ -77,23 +87,25 @@ export function loadToken(token) {
         type: SET_TOKEN,
         payload: data.token
       });
-      data.token.packages.map(async (pack) => {
-        try {
-          const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
-          if(gotPackageData.done) {
-            const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
-            console.log(savedPackage);
+      if(!fromInput) {
+        data.token.packages.map(async (pack) => {
+          try {
+            const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
+            if(gotPackageData.done) {
+              const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
+              console.log(savedPackage);
+            }
+            dispatch({
+              type: ADD_PACKAGE,
+              payload: { ...gotPackageData, name: pack.packageName, token }
+            });
+          } catch(error) {
+            throwError(error, dispatch);
+            const { data: removeBrokenPack } = await axios.patch(`${API_URL}/token/`, { packageNumber: pack.packageNumber, token: data.token.token });
+            console.log(removeBrokenPack);
           }
-          dispatch({
-            type: ADD_PACKAGE,
-            payload: { ...gotPackageData, name: pack.packageName, token }
-          });
-        } catch(error) {
-          throwError(error, dispatch);
-          const { data: removeBrokenPack } = await axios.patch(`${API_URL}/token/`, { packageNumber: pack.packageNumber, token: data.token.token });
-          console.log(removeBrokenPack);
-        }
-      });
+        });
+      }
       noError(dispatch);
     } catch(error) { throwError(error, dispatch) }
   }

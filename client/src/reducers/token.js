@@ -1,4 +1,4 @@
-import { SET_TOKEN, LOAD_TOKEN, GET_TOKEN } from '../actions';
+import { SET_TOKEN, GET_TOKEN, SIGN_OUT } from '../actions';
 const INITIAL_STATE = {};
 
 export default function token(state = INITIAL_STATE, action) {
@@ -10,9 +10,8 @@ export default function token(state = INITIAL_STATE, action) {
     case GET_TOKEN:
       const gotToken = action.payload;
       return { ...state, tokenShort: gotToken };
-    case LOAD_TOKEN:
-      const token = action.payload;
-      return token;
+    case SIGN_OUT:
+      return INITIAL_STATE;
     default: return state;
  }
 }

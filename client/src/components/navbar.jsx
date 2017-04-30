@@ -5,6 +5,7 @@ import { Container } from '../style-utils';
 import c from '../style-utils/colors';
 
 import TokenBar from './tokenBar';
+import SignOut from './signout';
 
 import listImg from '../images/list.png';
 import infoImg from '../images/rounded-info-button.png';
@@ -22,14 +23,15 @@ class Navbar extends Component {
           <NavLinks>
             <li>
               <NavLink activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
-                <img src={listImg} alt="dodaj paczkę"/>
+                <img src={listImg} alt="lista przesyłek"/>
               </NavLink>
             </li>
             <li>
               <NavLink activeClassName="active" exact to="/info">
-                <img src={infoImg} alt=""/>
+                <img src={infoImg} alt="info"/>
               </NavLink>
             </li>
+            <SignOut />
           </NavLinks>
         </NavContainer>
       </AppBar>
@@ -53,6 +55,8 @@ const AppBar = styled.nav`
 const NavContainer = styled(Container)`
   align-items: center;
   justify-content: space-between;
+  width: auto;
+  max-width: 1000px;
 `;
 
 const NavLinks = styled.ul`

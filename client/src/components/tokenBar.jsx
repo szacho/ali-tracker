@@ -22,7 +22,8 @@ class TokenBar extends Component {
 
   handleTokenInputChange(e) {
     this.setState({ tokenInputValue: e.target.value.trim() }, () => {
-      this.props.loadToken(this.state.tokenInputValue);
+      let fromInput = true;
+      this.props.loadToken(this.state.tokenInputValue, fromInput);
     });
   }
 
@@ -32,8 +33,10 @@ class TokenBar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.token !== this.props.token) {
-      this.setState({ navigateTo: nextProps.token });
+      this.setState({ navigateTo: nextProps.token, tokenInputValue: nextProps.token });
+      console.log('TOKEN:',nextProps.token);
     }
+    if(!nextProps.token) this.setState({ tokenInputValue: '' });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,7 +48,7 @@ class TokenBar extends Component {
   render() {
     return (
       <TokenBarWrapper>
-        { this.state.navigateTo && <Redirect push to={this.state.navigateTo}/> }
+        { this.state.navigateTo && <Redirect to={this.state.navigateTo}/> }
         <TokenInput onFocus={this.handleTokenInputFocus.bind(this)} onChange={this.handleTokenInputChange.bind(this)} value={this.state.tokenInputValue} type="text" placeholder="twój kod"  />
       </TokenBarWrapper>
     );
