@@ -22,8 +22,7 @@ class TokenBar extends Component {
 
   handleTokenInputChange(e) {
     this.setState({ tokenInputValue: e.target.value.trim() }, () => {
-      let fromInput = true;
-      this.props.loadToken(this.state.tokenInputValue, fromInput);
+      this.props.loadToken(this.state.tokenInputValue);
     });
   }
 
@@ -34,7 +33,6 @@ class TokenBar extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.token !== this.props.token) {
       this.setState({ navigateTo: nextProps.token, tokenInputValue: nextProps.token });
-      console.log('TOKEN:',nextProps.token);
     }
     if(!nextProps.token) this.setState({ tokenInputValue: '' });
   }
