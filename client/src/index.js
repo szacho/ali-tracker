@@ -21,3 +21,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
+
+//TODO: dodaj wielu dostawców, introduction, credits, opisy przycisków menu (tooltipy), refaktoryzacja, RWD, nagłówki

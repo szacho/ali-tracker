@@ -26,7 +26,7 @@ class PackageList extends Component {
   render() {
     return(
       <div style={{marginTop: "20px"}}>
-        <Message />
+        { this.props.error && <Message error={this.props.error} /> }
         {this.renderPackages()}
       </div>
     );
@@ -34,7 +34,7 @@ class PackageList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { packages: state.packages, token: state.token };
+  return { packages: state.packages, token: state.token, error: state.message.error };
 }
 
 export default connect(mapStateToProps, actions)(PackageList);

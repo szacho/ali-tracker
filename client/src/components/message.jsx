@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import c from '../style-utils/colors';
 import {RemoveButton} from '../style-utils/';
 import { removeMessage } from '../actions';
 
 class Message extends Component {
   render() {
     return(
-      <MessageContainer display={this.props.error}>
+      <MessageContainer>
         <span>{this.props.error}</span>
         <RedRemoveButton onClick={this.props.removeMessage.bind(this)}></RedRemoveButton>
       </MessageContainer>
@@ -16,14 +15,10 @@ class Message extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { error: state.message.error };
-}
-
-export default connect(mapStateToProps, { removeMessage })(Message);
+export default connect(null, { removeMessage })(Message);
 
 const MessageContainer = styled.div`
-  display: ${props => props.display ? 'flex' : 'none'};
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 590px;

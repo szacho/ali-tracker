@@ -16,23 +16,23 @@ class Navbar extends Component {
     return(
       <AppBar>
         <NavContainer>
-          <header>
-            <h1>AliTracker</h1>
-          </header>
+          <h1>AliTracker</h1>
           <TokenBar />
-          <NavLinks>
-            <li>
-              <NavLink activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
+          <nav>            
+            <NavLinks>
+              <li>
+                <NavLink activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
                 <img src={listImg} alt="lista przesyłek"/>
               </NavLink>
             </li>
             <li>
               <NavLink activeClassName="active" exact to="/info">
-                <img src={infoImg} alt="info"/>
-              </NavLink>
-            </li>
-            <SignOut />
-          </NavLinks>
+              <img src={infoImg} alt="info"/>
+            </NavLink>
+          </li>
+          <SignOut />
+        </NavLinks>
+          </nav>
         </NavContainer>
       </AppBar>
     );
@@ -41,7 +41,7 @@ class Navbar extends Component {
 
 export default Navbar;
 
-const AppBar = styled.nav`
+const AppBar = styled.header`
   background: ${c.mainRed};
   height: 43px;
   width: 100%;
