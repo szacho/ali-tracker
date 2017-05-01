@@ -18,8 +18,10 @@ class PackageList extends Component {
       return this.props.packages.map((pack, i) => {
         return <PackageCard pack={pack} key={pack.number} />;
       });
+    } else if(this.props.token.packages && this.props.token.packages.length === 0) {
+      return <span>Aktualnie nie śledzisz żadnych przesyłek.</span>
     } else {
-      return <span>Brak zapisanych przesyłek</span>
+      return <span>Wczytywanie...</span>
     }
   }
 

@@ -1,4 +1,4 @@
-import { SET_TOKEN, GET_TOKEN, SIGN_OUT } from '../actions';
+import { SET_TOKEN, GET_TOKEN, SIGN_OUT, REMOVE_PACKAGE } from '../actions';
 const INITIAL_STATE = {};
 
 export default function token(state = INITIAL_STATE, action) {
@@ -10,6 +10,9 @@ export default function token(state = INITIAL_STATE, action) {
     case GET_TOKEN:
       const gotToken = action.payload;
       return { ...state, tokenShort: gotToken };
+    case REMOVE_PACKAGE:
+      const packages = state.packages.filter(p => { return p.packageNumber !== action.payload });
+      return { ...state, packages };
     case SIGN_OUT:
       return INITIAL_STATE;
     default: return state;
