@@ -17,7 +17,7 @@ export const RemoveButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scale(0.8);
+  transform: scale(0.75);
   &:hover::before, &:hover::after{
     background: ${ c.hoverRed };
   }

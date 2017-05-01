@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../style-utils';
 import c from '../style-utils/colors';
@@ -16,17 +16,19 @@ class Navbar extends Component {
     return(
       <AppBar>
         <NavContainer>
-          <h1>AliTracker</h1>
+          <Link to='/'>
+            <h1>AliTracker</h1>
+          </Link>
           <TokenBar />
-          <nav>            
+          <nav>
             <NavLinks>
               <li>
-                <NavLink activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
+                <NavLink title="Twoje przesyłki" activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
                 <img src={listImg} alt="lista przesyłek"/>
               </NavLink>
             </li>
             <li>
-              <NavLink activeClassName="active" exact to="/info">
+              <NavLink title="Informacje" activeClassName="active" exact to="/info">
               <img src={infoImg} alt="info"/>
             </NavLink>
           </li>

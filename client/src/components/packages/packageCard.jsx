@@ -10,7 +10,7 @@ class PackageCard extends Component {
     return ev.map((event, i) => {
       return(
         <Event key={i}>
-          <span>{ event.eventName } w <EventPlace>{ event.place ? event.place : '[brak danych]' }</EventPlace></span> <EventDate>{ event.time }</EventDate>
+          <span>{ event.eventName } w <EventPlace>{ event.place ? event.place : '[brak danych]' }</EventPlace></span> <span>{ event.time }</span>
         </Event>
       );
     });
@@ -26,7 +26,7 @@ class PackageCard extends Component {
       <Card>
         <NumberAndRemoveWrapper>
           <PNumber>{ this.props.pack.number }</PNumber>
-          <RemoveButton onClick={this.handleRemoveButtonClick.bind(this)}></RemoveButton>
+          <RemoveButton title="Zamknij" onClick={this.handleRemoveButtonClick.bind(this)}></RemoveButton>
         </NumberAndRemoveWrapper>
         <Name>{ this.props.pack.name }</Name>
         <Events>
@@ -88,8 +88,4 @@ const Event = styled.li`
 
 const EventPlace = styled.span`
   font-weight: bold;
-`;
-
-const EventDate = styled.span`
-
 `;

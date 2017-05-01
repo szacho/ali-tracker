@@ -17,10 +17,10 @@ const renderInput = ({ input, label, type, id, meta: { touched, error, warning }
   </FormGroup>
 );
 
-const renderRadioInput = ({ input, label, type, id }) => (
+const renderRadioInput = ({ input, label, type, id, title }) => (
   <div>
     <input id={label} {...input} type={type}/>
-    <LabelForm htmlFor={label}>{label}</LabelForm>
+    <LabelForm title={title} htmlFor={label}>{label}</LabelForm>
   </div>
 );
 
@@ -41,10 +41,11 @@ class AddPackage extends Component {
     const { handleSubmit } = this.props;
     return(
       <AddPackageForm onSubmit={handleSubmit(this.handleAddPackage.bind(this))}>
+
         <RadioGroup>
-          <Field name="provider" component={renderRadioInput} value='PPSA' label="PPSA" type="radio" />
-          <Field name="provider" component={renderRadioInput} value='DHL' label="DHL" type="radio" />
-          <Field name="provider" component={renderRadioInput} value='UPS' label="UPS" type="radio" />
+          <Field name="provider" component={renderRadioInput} title="Poczta Polska" value='PPSA' label="PPSA" type="radio" />
+          <Field name="provider" component={renderRadioInput} title="Kurier DHL" value='DHL' label="DHL" type="radio" />
+          <Field name="provider" component={renderRadioInput} title="Kurier UPS" value='UPS' label="UPS" type="radio" />
         </RadioGroup>
 
         <Field name="packageName" component={renderInput} id="packageName" label="Nazwa przesyłki" type="text" />

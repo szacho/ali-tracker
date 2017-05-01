@@ -22,4 +22,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-//TODO: dodaj wielu dostawców, introduction, credits, opisy przycisków menu (tooltipy), refaktoryzacja, RWD, nagłówki
+//TODO: dodaj wielu dostawców, introduction, credits, opisy przycisków menu (tooltipy), refaktoryzacja, RWD, nagłówki, ustaw inne tło

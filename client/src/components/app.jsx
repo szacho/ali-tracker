@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { getToken } from '../actions';
 
 import { Container } from '../style-utils';
+import c from '../style-utils/colors';
 import styled from 'styled-components';
 import Navbar from './navbar';
-import Sidebar from './sidebar';
+import AddPackage from './packages/addPackageForm';
 import PackageList from './packages/packageList';
 import Introduction from './introduction';
 
@@ -20,7 +21,9 @@ class App extends Component {
       <div>
         <Navbar token={this.props.token} />
         <MainContainer>
-          <Sidebar />
+          <Aside>
+            <AddPackage />
+          </Aside>
           <MainContent>
             <Switch>
               <Route exact path='/info' render={() => {return <h2>credits</h2>}} />
@@ -50,4 +53,11 @@ const MainContent = styled.main`
   width: 70%;
   height: 100%;
   padding: 20px 40px;
+`;
+
+const Aside = styled.aside`
+  width: 30%;
+  height: 100%;
+  background: ${ c.background.second };
+  padding: 40px 40px 0 0;
 `;

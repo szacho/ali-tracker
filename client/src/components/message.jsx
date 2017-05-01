@@ -9,7 +9,7 @@ class Message extends Component {
     return(
       <MessageContainer>
         <span>{this.props.error}</span>
-        <RedRemoveButton onClick={this.props.removeMessage.bind(this)}></RedRemoveButton>
+        <RedRemoveButton title="Zamknij" onClick={this.props.removeMessage.bind(this)}></RedRemoveButton>
       </MessageContainer>
     );
   }
