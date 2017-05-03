@@ -26,7 +26,7 @@ const MessageContainer = styled.div`
   padding: 12px;
   background: #f2dede;
   color: #a94442;
-  margin-top: 20px;
+  margin: 20px 0;
   border: 1px solid #ebccd1;
   border-radius: 3px;
   font-size: 1.05rem;

@@ -22,4 +22,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-//TODO: dodaj wielu dostawców, refaktoryzacja, RWD, nagłówki, ustaw inne tło, przesyłki nieaktywne przez 30dni, wyczyść formularz po skutecznym dodaniu
+//TODO: dodaj wielu dostawców, refaktoryzacja, RWD, nagłówki, ustaw inne tło, przesyłki nieaktywne przez 30dni, wyczyść formularz po skutecznym dodaniu, popraw error przy tworzeniu przesyłki o złym dostwacy

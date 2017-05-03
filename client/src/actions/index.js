@@ -81,7 +81,7 @@ export function getToken() {
 }
 
 export function loadToken(token) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
       const { data } = await axios.get(`${API_URL}/token/${token}`);
       dispatch({
@@ -102,6 +102,10 @@ export function loadToken(token) {
             });
           } catch(error) {
             throwError(error, dispatch);
+            dispatch({
+              type: REMOVE_PACKAGE,
+              payload: pack.packageNumber
+            });
             const { data: removeBrokenPack } = await axios.patch(`${API_URL}/token/`, { packageNumber: pack.packageNumber, token: data.token.token });
             console.log(removeBrokenPack);
           }
