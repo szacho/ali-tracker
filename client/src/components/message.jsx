@@ -18,14 +18,15 @@ class Message extends Component {
 export default connect(null, { removeMessage })(Message);
 
 const MessageContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 590px;
+  width: 100%;
   padding: 12px;
   background: #f2dede;
   color: #a94442;
-  margin-top: 21px;
+  margin-top: 20px;
   border: 1px solid #ebccd1;
   border-radius: 3px;
   font-size: 1.05rem;

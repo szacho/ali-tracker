@@ -137,6 +137,7 @@ const RadioGroup = styled.div`
     display: block;
     font-size: 1rem;
     font-weight: 700;
+    transition: background .2s linear
   }
   input[type="radio"]:checked+label {
     background-color: ${cls.hoverRed};

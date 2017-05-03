@@ -10,6 +10,7 @@ import Navbar from './navbar';
 import AddPackage from './packages/addPackageForm';
 import PackageList from './packages/packageList';
 import Introduction from './introduction';
+import Credits from './credits';
 
 class App extends Component {
   componentWillMount() {
@@ -26,8 +27,8 @@ class App extends Component {
           </Aside>
           <MainContent>
             <Switch>
-              <Route exact path='/info' render={() => {return <h2>credits</h2>}} />
-              <Route exact path='/' render={() => (this.props.token ? ( <Redirect to={`/${this.props.token}`} /> ) : ( <Introduction /> ))} />
+              <Route exact path='/info' render={() => {return <Credits />}} />
+              <Route exact path='/' render={() => (this.props.token ? ( <Redirect to={`/${this.props.token}`} /> ) : ( <Introduction token={this.props.token} /> ))} />
               <Route path='/:token' component={PackageList} />
             </Switch>
           </MainContent>
@@ -52,12 +53,12 @@ const MainContainer = styled(Container)`
 const MainContent = styled.main`
   width: 70%;
   height: 100%;
-  padding: 20px 40px;
+  padding: 20px;
 `;
 
 const Aside = styled.aside`
   width: 30%;
   height: 100%;
   background: ${ c.background.second };
-  padding: 40px 40px 0 0;
+  padding: 40px 40px 0 20px;
 `;

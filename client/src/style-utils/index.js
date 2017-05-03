@@ -51,3 +51,20 @@ export const FlatInput = styled.input`
   height: 20px;
   font-size: 1.0rem;
 `;
+
+export const MainHeader = styled.h2`
+  font-size: 1.65rem;
+  display: flex;
+  align-items: center;
+  color: #556;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    margin-right: 6px;
+    height: 32px;
+    background: ${ c.mainRed };
+    border-radius: 2px;
+  }
+`

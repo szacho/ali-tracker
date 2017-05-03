@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions'
+import * as actions from '../../actions';
 
+import { MainHeader } from '../../style-utils/';
 import PackageCard from './packageCard';
 import Message from '../message';
 
@@ -19,9 +20,9 @@ class PackageList extends Component {
         return <PackageCard pack={pack} key={pack.number} />;
       });
     } else if(this.props.token.packages && this.props.token.packages.length === 0) {
-      return <span>Aktualnie nie śledzisz żadnych przesyłek.</span>
+      return <MainHeader>Aktualnie nie śledzisz żadnych przesyłek</MainHeader>
     } else {
-      return <span>Wczytywanie...</span>
+      return <MainHeader>Wczytywanie...</MainHeader>
     }
   }
 

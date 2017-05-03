@@ -1,4 +1,4 @@
-import { ADD_PACKAGE, REMOVE_PACKAGE, SIGN_OUT } from '../actions';
+import { ADD_PACKAGE, REMOVE_PACKAGE, SIGN_OUT, RESET_PACKAGES } from '../actions';
 const INITIAL_STATE = [];
 
 export default function packages(state = INITIAL_STATE, action) {
@@ -13,6 +13,8 @@ export default function packages(state = INITIAL_STATE, action) {
    case REMOVE_PACKAGE:
      const number = action.payload;
      return state.filter(p => { return p.number !== number });
+   case RESET_PACKAGES:
+     return INITIAL_STATE;
    case SIGN_OUT:
      return INITIAL_STATE;
    default: return state;

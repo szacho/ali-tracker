@@ -26,7 +26,7 @@ class PackageCard extends Component {
       <Card>
         <NumberAndRemoveWrapper>
           <PNumber>{ this.props.pack.number }</PNumber>
-          <RemoveButton title="Zamknij" onClick={this.handleRemoveButtonClick.bind(this)}></RemoveButton>
+          <RemoveButton title="Usuń" onClick={this.handleRemoveButtonClick.bind(this)}></RemoveButton>
         </NumberAndRemoveWrapper>
         <Name>{ this.props.pack.name }</Name>
         <Events>

@@ -5,6 +5,7 @@ export const ADD_PACKAGE = 'ADD_PACKAGE';
 export const SET_TOKEN = 'SET_TOKEN';
 export const GET_TOKEN = 'GET_TOKEN';
 export const REMOVE_PACKAGE = 'REMOVE_PACKAGE';
+export const RESET_PACKAGES = 'RESET_PACKAGES';
 export const THROW_ERROR = 'THROW_ERROR';
 export const NO_ERROR = 'NO_ERROR';
 export const SIGN_OUT = 'SIGN_OUT';
@@ -87,23 +88,29 @@ export function loadToken(token) {
         type: SET_TOKEN,
         payload: data.token
       });
-      data.token.packages.map(async (pack) => {
-        try {
-          const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
-          if(gotPackageData.done) {
-            const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
-            console.log(savedPackage);
+      if(data.token.packages.length > 0) {
+        data.token.packages.map(async (pack) => {
+          try {
+            const { data: gotPackageData } = await axios.get(`${API_URL}/package/${pack.provider}/${pack.packageNumber}`);
+            if(gotPackageData.done) {
+              const { data: savedPackage } = await axios.post(`${API_URL}/package/`, { package: { ...gotPackageData, name: pack.packageName, token }});
+              console.log(savedPackage);
+            }
+            dispatch({
+              type: ADD_PACKAGE,
+              payload: { ...gotPackageData, name: pack.packageName, token }
+            });
+          } catch(error) {
+            throwError(error, dispatch);
+            const { data: removeBrokenPack } = await axios.patch(`${API_URL}/token/`, { packageNumber: pack.packageNumber, token: data.token.token });
+            console.log(removeBrokenPack);
           }
-          dispatch({
-            type: ADD_PACKAGE,
-            payload: { ...gotPackageData, name: pack.packageName, token }
-          });
-        } catch(error) {
-          throwError(error, dispatch);
-          const { data: removeBrokenPack } = await axios.patch(`${API_URL}/token/`, { packageNumber: pack.packageNumber, token: data.token.token });
-          console.log(removeBrokenPack);
-        }
-      });
+        });
+      } else {
+        dispatch({
+          type: RESET_PACKAGES
+        });
+      }
       noError(dispatch);
     } catch(error) { throwError(error, dispatch) }
   }
