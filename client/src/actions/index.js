@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3010/api';
+const API_URL = `${window.location.origin.replace('3000', '3010')}/api`;
 export const ADD_PACKAGE = 'ADD_PACKAGE';
 export const SET_TOKEN = 'SET_TOKEN';
 export const GET_TOKEN = 'GET_TOKEN';
