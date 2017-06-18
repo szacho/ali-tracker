@@ -7,9 +7,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import resetCss from './style-utils/reset';
 import App from './components/app';
-resetCss();
+import './styles/index.css';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
