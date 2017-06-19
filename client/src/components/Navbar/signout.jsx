@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signOut } from '../actions';
+import { signOut } from '../../actions';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import c from '../style-utils/colors';
+import c from '../../style-utils/colors';
 
-import logoutImg from '../images/logout.png';
+import logoutImg from '../../images/logout.png';
 
 class SignOut extends Component {
   handleSignOutClick() {

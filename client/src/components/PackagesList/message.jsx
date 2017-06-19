@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import {RemoveButton} from '../style-utils/';
-import { removeMessage } from '../actions';
+import {RemoveButton} from '../../style-utils/';
+import { removeMessage } from '../../actions';
 
 class Message extends Component {
   render() {

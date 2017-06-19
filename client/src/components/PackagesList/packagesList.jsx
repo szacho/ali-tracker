@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 import { MainHeader } from '../../style-utils/';
 import PackageCard from './packageCard';
-import Message from '../message';
+import Message from './message';
 
 class PackageList extends Component {
   componentDidMount() {

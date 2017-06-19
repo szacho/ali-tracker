@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container } from '../style-utils';
-import c from '../style-utils/colors';
+import { Container } from '../../style-utils';
+import c from '../../style-utils/colors';
 
 import TokenBar from './tokenBar';
 import SignOut from './signout';
 
-import listImg from '../images/list.png';
-import infoImg from '../images/rounded-info-button.png';
+import listImg from '../../images/list.png';
+import infoImg from '../../images/rounded-info-button.png';
 
 
 class Navbar extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
-import { FlatInput } from '../style-utils';
+import * as actions from '../../actions';
+import { FlatInput } from '../../style-utils';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 

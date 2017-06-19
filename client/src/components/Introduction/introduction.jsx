@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import { MainHeader } from '../style-utils/';
+import { MainHeader } from '../../style-utils/';
 
 export default (props) => {
   if(props.token) {
