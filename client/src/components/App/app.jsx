@@ -8,9 +8,7 @@ import AddPackage from '../PackageForm/addPackageForm';
 import PackageList from '../PackagesList/packagesList';
 import Introduction from '../Introduction/introduction';
 import Information from '../Information/information';
-
-import './app.css'
-
+import '../../styles/index.css';
 class App extends Component {
   componentWillMount() {
     this.props.getToken();

@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/App/app';
-import './styles/index.css';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -21,4 +20,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-//TODO: dodaj wielu dostawców, refaktoryzacja, RWD, nagłówki, ustaw inne tło, wyczyść formularz po skutecznym dodaniu, popraw error przy tworzeniu przesyłki o złym dostwacy
+//TODO: dodaj wielu dostawców, refaktoryzacja, RWD, ustaw inne tło, wyczyść formularz po skutecznym dodaniu

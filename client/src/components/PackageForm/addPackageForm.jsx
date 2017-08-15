@@ -4,7 +4,6 @@ import * as actions from '../../actions';
 
 import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import './addPackageForm.css'
 
 const renderInput = ({ input, label, type, id, meta: { touched, error, warning } }) => (
   <div className="add-package_form-group">

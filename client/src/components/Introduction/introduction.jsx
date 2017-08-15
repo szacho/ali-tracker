@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-import './introduction.css';
-
 export default (props) => {
   if(props.token) {
     return <Redirect to={`/${props.token}`} />;

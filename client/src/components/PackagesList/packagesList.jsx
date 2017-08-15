@@ -4,7 +4,6 @@ import * as actions from '../../actions';
 
 import PackageCard from './packageCard';
 import Message from './message';
-import './packageList.css'
 
 class PackageList extends Component {
   componentDidMount() {

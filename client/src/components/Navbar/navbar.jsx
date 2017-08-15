@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import './navbar.css';
-
 import TokenBar from './tokenBar';
 import SignOut from './signout';
 

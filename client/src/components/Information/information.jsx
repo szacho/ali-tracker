@@ -1,5 +1,4 @@
 import React from 'react';
-import './information.css';
 
 export default () => {
   return(
