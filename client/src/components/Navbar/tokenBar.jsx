@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { FlatInput } from '../../style-utils';
-import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
 class TokenBar extends Component {
@@ -45,25 +43,12 @@ class TokenBar extends Component {
 
   render() {
     return (
-      <TokenBarWrapper>
+      <div className="token-bar">
         { this.state.navigateTo && <Redirect to={this.state.navigateTo}/> }
-        <TokenInput onFocus={this.handleTokenInputFocus.bind(this)} onChange={this.handleTokenInputChange.bind(this)} value={this.state.tokenInputValue} type="text" placeholder="twój kod"  />
-      </TokenBarWrapper>
+        <input className="token-bar_input" onFocus={this.handleTokenInputFocus.bind(this)} onChange={this.handleTokenInputChange.bind(this)} value={this.state.tokenInputValue} type="text" placeholder="twój kod"  />
+      </div>
     );
   }
 }
 
 export default connect(state => ({token: state.token.token || state.token.tokenShort}), actions)(TokenBar);
-
-const TokenInput = styled(FlatInput)`
-  height: 16px;
-  width: 120px;
-  letter-spacing: 1.2px;
-  text-align: center
-  text-transform: lowercase;
-`;
-
-const TokenBarWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;

@@ -1,0 +1,51 @@
+@import "variables.sass"
+.main-header
+  font-size: 1.65rem
+  display: flex
+  align-items: center
+  color: #556
+  &::before
+    content: ''
+    display: inline-block
+    width: 4px
+    margin-right: 6px
+    height: 32px
+    background: $main-red
+    border-radius: 2px
+
+.link--red
+  color: #E53935
+
+.remove-btn
+  border: none
+  padding: 0
+  background: transparent
+  width: 15px
+  height: 15px
+  display: flex
+  align-items: center
+  justify-content: center
+  transform: scale(0.75)
+  &:hover::before, &:hover::after
+    background: $hover-red
+  &:hover
+    cursor: pointer
+  &::after, &::before
+    content: ''
+    display: block
+    height: 21.21px
+    width: 2.5px
+    position: relative
+    background: #d0d1d5
+    border-radius: 2px
+  &::before
+    transform: rotate(45deg)
+    left: 1.25px
+  &::after
+    transform: rotate(-45deg)
+    left: -1.25px
+.remove-btn--red
+  transform: scale(0.7)
+  &:before, &:after
+    top: -4px
+    background: #c96664

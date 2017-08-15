@@ -1,0 +1,64 @@
+@import "../../styles/variables.sass"
+.app-bar
+  background: $main-red
+  height: 43px
+  width: 100%
+  font-size: 1.8rem
+  color: #fff
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px rgba(0,0,0,0.24)
+  z-index: 101
+.nav-container
+  max-width: 1000px
+  margin: 0 auto
+  display: flex
+  align-items: center
+  justify-content: space-between
+.nav-links
+  display: flex
+.nav-links_item
+  height: 43px
+  width: calc(43px*1.17)
+.nav-links_link
+  transition: 0.2s ease-out all
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  &:hover
+    background: $hover-red
+.nav-links_link--active
+  background: $hover-red
+.nav-links_img
+  height: 43.2%
+  width: auto
+.nav-links_sign-out
+  transition: 0.2s ease-out all
+  height: 43px
+  width: calc(43px*1.17)
+  border: none
+  padding: 0
+  background: inherit
+  display: flex
+  align-items: center
+  justify-content: center
+  &:hover
+    background: $hover-red
+    cursor: pointer
+  img
+    width: 43.2% !important
+    height: 50.2% !important
+
+.token-bar
+  display: flex
+  align-items: center
+.token-bar_input
+  margin: 0
+  padding: 3px 8px
+  font-size: 1.0rem
+  height: 16px
+  width: 120px
+  text-align: center
+  text-transform: lowercase
+  border: 1px solid #ddd
+  border-radius: 3px
+  letter-spacing: 1.2px

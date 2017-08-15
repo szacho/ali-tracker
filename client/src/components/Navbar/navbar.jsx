@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Container } from '../../style-utils';
-import c from '../../style-utils/colors';
+import './navbar.css';
 
 import TokenBar from './tokenBar';
 import SignOut from './signout';
@@ -14,70 +12,31 @@ import infoImg from '../../images/rounded-info-button.png';
 class Navbar extends Component {
   render() {
     return(
-      <AppBar>
-        <NavContainer>
+      <header className="app-bar">
+        <div className="nav-container">
           <Link to='/'>
             <h1>AliTracker</h1>
           </Link>
           <TokenBar />
           <nav>
-            <NavLinks>
-              <li>
-                <NavLink title="Twoje przesyłki" activeClassName="active" exact to={`/${this.props.token ? this.props.token : ''}`}>
-                <img src={listImg} alt="lista przesyłek"/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink title="Informacje" activeClassName="active" exact to="/info">
-              <img src={infoImg} alt="info"/>
-            </NavLink>
-          </li>
-          <SignOut />
-        </NavLinks>
+            <ul className="nav-links">
+              <li className="nav-links_item">
+                <NavLink className="nav-links_link" title="Twoje przesyłki" activeClassName="nav-links_link--active" exact to={`/${this.props.token ? this.props.token : ''}`}>
+                <img className="nav-links_img" src={listImg} alt="lista przesyłek"/>
+                </NavLink>
+              </li>
+              <li className="nav-links_item">
+                <NavLink className="nav-links_link" title="Informacje" activeClassName="nav-links_link--active" exact to="/info">
+                <img className="nav-links_img" src={infoImg} alt="info"/>
+                </NavLink>
+              </li>
+              <SignOut />
+            </ul>
           </nav>
-        </NavContainer>
-      </AppBar>
+        </div>
+      </header>
     );
   }
 }
 
 export default Navbar;
-
-const AppBar = styled.header`
-  background: ${c.mainRed};
-  height: 43px;
-  width: 100%;
-  font-size: 1.8rem;
-  color: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  z-index: 101;
-  position: relative;
-`;
-
-const NavContainer = styled(Container)`
-  align-items: center;
-  justify-content: space-between;
-  width: auto;
-  max-width: 1000px;
-`;
-
-const NavLinks = styled.ul`
-  display: flex;
-  li {
-    height: 43px;
-    width: calc(43px*1.17);
-    a {
-      transition: 0.2s ease-out all;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      &:hover { background: ${c.hoverRed} }
-      &.active { background: ${c.hoverRed} }
-    }
-    img {
-      height: 43.2%;
-      width: auto;
-    }
-  }
-`;

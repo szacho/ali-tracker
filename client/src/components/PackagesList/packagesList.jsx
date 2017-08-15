@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-import { MainHeader } from '../../style-utils/';
 import PackageCard from './packageCard';
 import Message from './message';
+import './packageList.css'
 
 class PackageList extends Component {
   componentDidMount() {
@@ -20,9 +20,9 @@ class PackageList extends Component {
         return <PackageCard pack={pack} key={pack.number} />;
       });
     } else if(this.props.token.packages && this.props.token.packages.length === 0) {
-      return <MainHeader>Aktualnie nie śledzisz żadnych przesyłek</MainHeader>
+      return <h2 className="main-header">Aktualnie nie śledzisz żadnych przesyłek</h2>
     } else {
-      return <MainHeader>Wczytywanie...</MainHeader>
+      return <h2 className="main-header">Wczytywanie...</h2>
     }
   }
 
