@@ -1,4 +1,6 @@
 @import "../../styles/variables.sass"
+.packages-list
+  margin-top: 20px
 .package-card
   box-sizing: border-box
   background: $bckg-first-white
@@ -32,8 +34,13 @@
   font-size: 1rem
   display: flex
   justify-content: space-between
-  padding-top: 5px
+  padding-top: 3px
+  line-height: 125%
+.package-card_event-date
+  white-space: nowrap
+  margin-left: 8px
 .package-card_event-place
+  white-space: nowrap
   font-weight: bold
 
 .message
@@ -49,3 +56,7 @@
   border: 1px solid #ebccd1
   border-radius: 3px
   font-size: 1.05rem
+
+@media only screen and (max-width: 960px)
+  .package-card:first-child, .packages-list, .message
+    margin-top: 0

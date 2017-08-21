@@ -27,7 +27,7 @@ class PackageList extends Component {
 
   render() {
     return(
-      <div style={{marginTop: "20px"}}>
+      <div className="packages-list">
         { this.props.error && <Message error={this.props.error} /> }
         {this.renderPackages()}
       </div>

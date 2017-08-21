@@ -14,7 +14,7 @@ class SignOut extends Component {
     if(this.props.token) {
       return(
         <li className="nav-links_item">
-          <button className="nav-links_sign-out" title="Wyloguj" onClick={this.handleSignOutClick.bind(this)}>
+          <button className="nav-links_btn" title="Wyloguj" onClick={this.handleSignOutClick.bind(this)}>
             <img src={logoutImg} alt="wyloguj"/>
           </button>
         </li>

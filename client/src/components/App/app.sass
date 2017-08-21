@@ -1,6 +1,6 @@
 .main-container
   display: flex
-  width: 1000px
+  max-width: 960px
   height: 100%
   margin: 0 auto
   font-size: 2rem
@@ -8,9 +8,20 @@
 .aside
   width: 30%
   height: 100%
-  padding: 40px 40px 0 20px
-  
+  padding: 40px 10px 0 20px
+
 .main-content
   width: 70%
   height: 100%
   padding: 20px
+
+@media only screen and (max-width: 960px)
+  .main-content
+    width: auto
+    padding: 20px
+  .aside
+    width: auto
+    padding: 20px 20px 0 20px
+    display: none
+  .main-container
+    flex-direction: column

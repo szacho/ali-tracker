@@ -7,7 +7,7 @@ class PackageCard extends Component {
     return ev.map((event, i) => {
       return(
         <li className="package-card_event" key={i}>
-          <span>{ event.eventName } w <span className="package-card_event-place">{ event.place ? event.place : '[brak danych]' }</span></span> <span>{ event.time }</span>
+          <span>{ event.eventName } w <span className="package-card_event-place">{ event.place ? event.place : '[brak danych]' }</span></span> <span className="package-card_event-date">{ event.time }</span>
         </li>
       );
     });
