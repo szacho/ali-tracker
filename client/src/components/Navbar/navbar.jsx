@@ -14,10 +14,12 @@ class Navbar extends Component {
   }
   componentDidMount() {
     window.addEventListener('resize', (e) => {
+      const aside = document.querySelector(".aside");
       if(window.innerWidth > 960 && !this.state.isFormVisible) {
-        const aside = document.querySelector(".aside");
         aside.style.display = "block";
         this.setState({ isFormVisible: true });
+      } else if(!aside.style.display && window.innerWidth <= 960) {
+        this.setState({ isFormVisible: false });
       }
     });
   }
@@ -29,7 +31,6 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.state);
     const isFormActive = this.state.isFormVisible;
     return(
       <header className="app-bar">

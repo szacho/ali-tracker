@@ -9,7 +9,7 @@ export default function packages(state = INITIAL_STATE, action) {
        return [ newPackage ];
      }
      if(state.find(pack => (pack.number === newPackage.number))) return state;
-     else return [ ...state, newPackage ];
+     else return [ newPackage, ...state ];
    case REMOVE_PACKAGE:
      const number = action.payload;
      return state.filter(p => { return p.number !== number });

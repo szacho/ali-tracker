@@ -121,7 +121,7 @@ body {
 @media only screen and (max-width: 960px) {
   .main-content {
     width: auto;
-    padding: 20px; }
+    padding: 20px 10px; }
   .aside {
     width: auto;
     padding: 20px 20px 0 20px;
@@ -278,6 +278,10 @@ body {
 .introduction__feature {
   font-size: 1.1rem;
   line-height: 150%; }
+
+@media only screen and (max-width: 960px) {
+  .introduction {
+    margin-top: 0; } }
 
 .error_label {
   color: #d9534f;
