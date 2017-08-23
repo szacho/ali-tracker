@@ -7,7 +7,7 @@ import Message from './message';
 
 class PackageList extends Component {
   componentDidMount() {
-    if(!this.props.token.token || (this.props.packages.length === 0 && this.props.token.packages.length > 0)) {
+    if(!this.props.token.token) {
       const tokenToLoad = this.props.match.url.slice(1);
       this.props.loadToken(tokenToLoad);
     }

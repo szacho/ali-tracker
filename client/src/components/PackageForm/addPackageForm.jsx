@@ -27,7 +27,11 @@ const NavSubmitButton = withRouter(({ history }) => (
 class AddPackage extends Component {
   handleAddPackage(values) {
     if(!this.props.token) {
-      this.props.createToken(values.packageName, values.packageNumber, values.provider); //to refactor!!
+      this.props.createToken(values)
+      .then(() => {
+        const isNew = true;
+        this.props.loadToken(this.props.token, isNew);  
+      });
     } else {
       this.props.addPackageToToken(values, this.props.token);
     }

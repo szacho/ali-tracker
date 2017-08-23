@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Redirect } from 'react-router-dom';
+import _ from 'lodash';
 
 class TokenBar extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class TokenBar extends Component {
     this.state = {
       tokenInputValue: '',
       navigateTo: false
-    }
+    };
+    this.inputTokenLoad = _.debounce(this.inputTokenLoad, 250, {maxWait: 1500});
   }
 
   componentDidMount() {
@@ -18,9 +20,14 @@ class TokenBar extends Component {
     }
   }
 
+  inputTokenLoad(token) {
+    this.props.loadToken(token);
+  }
+
   handleTokenInputChange(e) {
+    console.log('hello');
     this.setState({ tokenInputValue: e.target.value.trim() }, () => {
-      this.props.loadToken(this.state.tokenInputValue);
+      this.inputTokenLoad(this.state.tokenInputValue);
     });
   }
 

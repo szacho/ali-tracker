@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { reset } from 'redux-form';
 
 const API_URL = `${window.location.origin.replace('3000', '3010')}/api`;
 export const ADD_PACKAGE = 'ADD_PACKAGE';
@@ -46,12 +47,13 @@ export function addPackageToToken({packageName, packageNumber, provider}, token)
         type: ADD_PACKAGE,
         payload: { ...gotPackageData, name: packageName, token }
       });
+      dispatch(reset('add-package'));
       noError(dispatch);
     } catch(error) { throwError(error, dispatch) }
   }
 }
 
-export function createToken(packageName, packageNumber, provider) {
+export function createToken({ packageName, packageNumber, provider }) {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`${API_URL}/token`, { packageName, packageNumber, provider });
@@ -80,14 +82,16 @@ export function getToken() {
   }
 }
 
-export function loadToken(token) {
+export function loadToken(token, isNew = false) {
   return async (dispatch, getState) => {
     try {
       const { data } = await axios.get(`${API_URL}/token/${token}`);
-      dispatch({
-        type: SET_TOKEN,
-        payload: data.token
-      });
+      if(!isNew) {
+        dispatch({
+          type: SET_TOKEN,
+          payload: data.token
+        });
+      }
       if(data.token.packages.length > 0) {
         data.token.packages.map(async (pack) => {
           try {
@@ -100,6 +104,8 @@ export function loadToken(token) {
               type: ADD_PACKAGE,
               payload: { ...gotPackageData, name: pack.packageName, token }
             });
+            dispatch(reset('add-package'));
+            noError(dispatch);
           } catch(error) {
             throwError(error, dispatch);
             dispatch({
@@ -114,8 +120,8 @@ export function loadToken(token) {
         dispatch({
           type: RESET_PACKAGES
         });
+        noError(dispatch);
       }
-      noError(dispatch);
     } catch(error) { throwError(error, dispatch) }
   }
 }
@@ -123,7 +129,7 @@ export function loadToken(token) {
 export function removePackageFromToken(token, packageNumber) {
   return async (dispatch) => {
     try {
-      const {data} = await axios.patch(`${API_URL}/token/`, { token, packageNumber });
+      const { data } = await axios.patch(`${API_URL}/token/`, { token, packageNumber });
       console.log(data);
       dispatch({
         type: REMOVE_PACKAGE,

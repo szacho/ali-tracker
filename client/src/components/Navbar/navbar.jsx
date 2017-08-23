@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import TokenBar from './tokenBar';
 import SignOut from './signout';
+import _ from 'lodash';
 
 import listImg from '../../images/list.png';
 import infoImg from '../../images/rounded-info-button.png';
@@ -11,17 +12,22 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = { isFormVisible: window.innerWidth > 960 ? true : false }
+    this.handleResize = _.debounce(this.handleResize, 200);
   }
+
   componentDidMount() {
-    window.addEventListener('resize', (e) => {
-      const aside = document.querySelector(".aside");
-      if(window.innerWidth > 960 && !this.state.isFormVisible) {
-        aside.style.display = "block";
-        this.setState({ isFormVisible: true });
-      } else if(!aside.style.display && window.innerWidth <= 960) {
-        this.setState({ isFormVisible: false });
-      }
-    });
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+
+  handleResize(e) {
+    console.log('hello');
+    const aside = document.querySelector(".aside");
+    if(window.innerWidth > 960 && !this.state.isFormVisible) {
+      aside.style.display = "block";
+      this.setState({ isFormVisible: true });
+    } else if(!aside.style.display && window.innerWidth <= 960) {
+      this.setState({ isFormVisible: false });
+    }
   }
 
   togglePackageForm() {
