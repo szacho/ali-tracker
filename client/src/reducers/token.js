@@ -11,7 +11,7 @@ export default function token(state = INITIAL_STATE, action) {
       const gotToken = action.payload;
       return { ...state, tokenShort: gotToken };
     case REMOVE_PACKAGE:
-      const packages = state.packages.filter(p => { return p.packageNumber !== action.payload });
+      const packages = state.packages.filter(p => p.packageNumber !== action.payload);
       return { ...state, packages };
     case SIGN_OUT:
       return INITIAL_STATE;

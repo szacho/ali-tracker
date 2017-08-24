@@ -20,4 +20,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-//TODO: dodaj wielu dostawców, refaktoryzacja, ustaw inne tło, wyczyść formularz po skutecznym dodaniu
+//TODO: dodaj wielu dostawców, refaktoryzacja, ustaw inne tło

@@ -5,11 +5,11 @@ import * as actions from '../../actions';
 import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
-const renderInput = ({ input, label, type, id, meta: { touched, error, warning } }) => (
+const renderInput = ({ input, label, type, id, meta: { touched, error } }) => (
   <div className="add-package_form-group">
     <label className="add-package_form-label" htmlFor={id}>{label}</label>
-    <input className={`add-package_input ${error && touched ? "add-package_input--error" : ""}`} id={id} error={error && touched} {...input} type={type}/>
-    { error && touched && <span className="error_label">{error}</span> }
+    <input {...input} className={`add-package_input ${(error && touched) ? "add-package_input--error" : ""}`} id={id} type={type}/>
+    { touched && error && <span className="error_label">{error}</span> }
   </div>
 );
 
@@ -59,13 +59,13 @@ class AddPackage extends Component {
 
 const validate = values => {
   const errors = {};
-  if(!values.packageNumber) {
-    errors.packageNumber = 'Podaj numer przesyłki!'
-  }
   if(!values.packageName) {
     errors.packageName = 'Podaj nazwę przesyłki!'
   } else if(values.packageName.length > 40) {
     errors.packageName = 'Nazwa przesyłki powinna być krótsza niż 50 znaków!'
+  }
+  if(!values.packageNumber) {
+    errors.packageNumber = 'Podaj numer przesyłki!'
   }
   return errors;
 }

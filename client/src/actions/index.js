@@ -18,6 +18,7 @@ function noError(dispatch) {
 }
 
 function throwError(error, dispatch) {
+  console.log({...error.response});
   const { status, data } = error.response;
   let payload = data;
   if(status === 429) { //rateLimiter

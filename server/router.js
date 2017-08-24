@@ -1,8 +1,5 @@
-import mongoose from 'mongoose';
 import * as providers from './providers';
 import * as models from './models';
-
-mongoose.Promise = global.Promise;
 
 export default function(app) {
   app.get('/api/package/:provider/:packageNumber', function(req, res, next) {
@@ -39,7 +36,7 @@ export default function(app) {
     try {
       const foundToken = await models.TokenUserModel.findOne({ token });
       if(!foundToken.packages.find(el => el.packageNumber === packageNumber)) {
-        foundToken.packages = [ ...foundToken.packages, { packageName, packageNumber, provider } ];
+        foundToken.packages = [ { packageName, packageNumber, provider }, ...foundToken.packages ];
         const updatedToken = await foundToken.save();
         res.send(updatedToken);
       } else {
@@ -76,7 +73,9 @@ export default function(app) {
     try {
       const token = await models.TokenUserModel.findOne({ token: req.params.token });
       if(token) {
-        res.status(200).send({ token });
+        token.lastUpdate = Date.now();
+        const updatedToken = await token.save();
+        res.status(200).send({ token: updatedToken });
       } else res.status(422).send({ error: 'Podany token nie istnieje.' });
     } catch(err) { next(err) }
   });
@@ -85,7 +84,7 @@ export default function(app) {
 async function generateToken() {
   try {
     let token = (0|Math.random()*9e6).toString(36);
-    let val = await models.TokenUserModel.findOne({ token });
+    const val = await models.TokenUserModel.findOne({ token });
     if(val) {
       console.log(`Token already exists: ${ val }`);
       generateToken();

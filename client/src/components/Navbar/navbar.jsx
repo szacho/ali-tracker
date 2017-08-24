@@ -20,7 +20,6 @@ class Navbar extends Component {
   }
 
   handleResize(e) {
-    console.log('hello');
     const aside = document.querySelector(".aside");
     if(window.innerWidth > 960 && !this.state.isFormVisible) {
       aside.style.display = "block";

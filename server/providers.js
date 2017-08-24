@@ -1,6 +1,4 @@
 import soap from 'soap';
-import _ from 'lodash';
-
 
 export function ppsa(res, packageNumber, provider, callback) {
   const url = "https://tt.poczta-polska.pl/Sledzenie/services/Sledzenie?wsdl";
@@ -28,7 +26,7 @@ function extractPPSAPackage(number, provider, value) {
     number: value.numer,
     provider,
     done: value.zakonczonoObsluge,
-    events: _.map(value.zdarzenia.zdarzenie, (val, key) => {
+    events: value.zdarzenia.zdarzenie.map(val => {
       return {
         eventName: val.nazwa,
         time: val.czas.split(' ')[0],

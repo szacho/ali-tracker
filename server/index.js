@@ -3,10 +3,11 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import router from './router';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import RateLimit from 'express-rate-limit';
+import router from './router';
+import cleanOldTokens from './schedule';
 
 const app = express();
 
@@ -38,9 +39,9 @@ app.use(function(err, req, res, next) {
   res.status(422).send({ error: err.message });
 });
 
-
 const PORT = process.env.PORT || 3010;
 const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`API server listening on ${PORT}`);
+  cleanOldTokens();
 });
