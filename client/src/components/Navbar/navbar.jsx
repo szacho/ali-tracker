@@ -42,7 +42,7 @@ class Navbar extends Component {
       <header className="app-bar">
         <div className="nav-container">
           <Link to='/'>
-            <h1 className="app-logo">AliTracker</h1>
+            <span className="app-logo">AliTracker</span>
           </Link>
           <TokenBar />
           <nav>

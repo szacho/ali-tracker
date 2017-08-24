@@ -63,6 +63,11 @@ body {
     background: #EF5350;
     border-radius: 2px; }
 
+.description {
+  font-size: 1.1rem;
+  line-height: 150%;
+  margin: 10px 0 0 20px; }
+
 .link--red {
   color: #E53935; }
 
@@ -132,15 +137,14 @@ body {
 .information {
   margin-top: 20px; }
 
-.information__description {
-  font-size: 1.1rem;
-  line-height: 150%;
-  margin: 10px 0 0 20px; }
+.information__todo-header {
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-top: 20px;
+  margin-left: 10px; }
 
 .information__todo-list {
-  margin: 20px 0 20px 20px;
-  font-weight: 700;
-  font-size: 1rem; }
+  margin: 0 0 20px 20px; }
 
 .information__todo-list--georgian {
   list-style-type: georgian; }
@@ -266,7 +270,8 @@ body {
   .nav-container {
     justify-content: center; }
   .app-logo {
-    margin: 5px; } }
+    padding: 4px;
+    display: block; } }
 
 .introduction {
   margin-top: 20px; }
@@ -276,8 +281,16 @@ body {
   list-style-type: disc; }
 
 .introduction__feature {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 150%; }
+
+.introduction__quickstart {
+  display: block;
+  color: #E53935;
+  line-height: 125%;
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin: 15px 0 0 10px; }
 
 @media only screen and (max-width: 960px) {
   .introduction {
@@ -393,7 +406,9 @@ body {
 .package-card_name {
   border-bottom: 1px solid #dfe0e4;
   padding-bottom: 4px;
-  font-size: 1.2rem; }
+  margin-top: 2px;
+  font-size: 1.2rem;
+  word-wrap: break-word; }
 
 .package-card_events {
   margin-top: 8px; }

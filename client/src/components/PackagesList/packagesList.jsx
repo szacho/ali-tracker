@@ -19,9 +19,9 @@ class PackageList extends Component {
         return <PackageCard pack={pack} key={pack.number} />;
       });
     } else if(this.props.token.packages && this.props.token.packages.length === 0) {
-      return <h2 className="main-header">Aktualnie nie śledzisz żadnych przesyłek</h2>
+      return <h1 className="main-header">Aktualnie nie śledzisz żadnych przesyłek</h1>
     } else {
-      return <h2 className="main-header">Wczytywanie...</h2>
+      return <h1 className="main-header">Wczytywanie...</h1>
     }
   }
 

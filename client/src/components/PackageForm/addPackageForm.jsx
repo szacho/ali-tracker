@@ -21,7 +21,7 @@ const renderRadioInput = ({ input, label, type, id, title }) => (
 );
 
 const NavSubmitButton = withRouter(({ history }) => (
-  <button className="add-package_submit-btn" onClick={() => history.push('/')}>Dodaj</button>
+  <button className="add-package_submit-btn" title="Dodaj przesyłkę" onClick={() => history.push('/')}>Dodaj</button>
 ));
 
 class AddPackage extends Component {
@@ -30,7 +30,7 @@ class AddPackage extends Component {
       this.props.createToken(values)
       .then(() => {
         const isNew = true;
-        this.props.loadToken(this.props.token, isNew);  
+        this.props.loadToken(this.props.token, isNew);
       });
     } else {
       this.props.addPackageToToken(values, this.props.token);
@@ -64,6 +64,8 @@ const validate = values => {
   }
   if(!values.packageName) {
     errors.packageName = 'Podaj nazwę przesyłki!'
+  } else if(values.packageName.length > 40) {
+    errors.packageName = 'Nazwa przesyłki powinna być krótsza niż 50 znaków!'
   }
   return errors;
 }
