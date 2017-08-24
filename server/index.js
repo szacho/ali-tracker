@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import router from './router';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -17,6 +18,7 @@ mongoose.connection.on('error', (error) => {
   console.log(`Connection error: ${error}`);
 });
 
+app.use(helmet());
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(bodyParser.json({ type: '*/*' }));
