@@ -18,9 +18,14 @@ function noError(dispatch) {
 }
 
 function throwError(error, dispatch) {
+  const { status, data } = error.response;
+  let payload = data;
+  if(status === 429) { //rateLimiter
+    payload = { error: data.message };
+  }
   dispatch({
     type: THROW_ERROR,
-    payload: error.response.data
+    payload
   });
 }
 
