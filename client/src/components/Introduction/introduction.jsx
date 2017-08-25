@@ -6,7 +6,7 @@ export default (props) => {
     return <Redirect to={`/${props.token}`} />;
   } else {
     return(
-      <div className="introduction">
+      <div>
         <h1 className="main-header">Śledzenie przesyłek</h1>
         <p className="description">
           Aplikacja AliTracker służy do sprawnego zarządzania przesyłkami. Nie wymaga rejestracji ani logowania - wystarczy dodać stronę do zakładek lub zapamiętać otrzymany kod.
