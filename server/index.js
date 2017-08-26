@@ -26,7 +26,7 @@ const apiLimiter = new RateLimit({
   windowMs: 60*60*1000,
   max: 1500,
   delayMs: 0,
-  message: "Przekroczony limit połączeń, spróbuj ponownie za godzinę."
+  message: "Przekroczony limit połączeń, spróbuj ponownie później."
 });
 
 app.use(helmet());

@@ -20,18 +20,18 @@ class Navbar extends Component {
   }
 
   handleResize(e) {
-    const aside = document.querySelector(".aside");
+    const form = document.querySelector(".add-package");
     if(window.innerWidth > 960 && !this.state.isFormVisible) {
-      aside.style.display = "block";
+      form.style.display = "block";
       this.setState({ isFormVisible: true });
-    } else if(!aside.style.display && window.innerWidth <= 960) {
+    } else if(!form.style.display && window.innerWidth <= 960) {
       this.setState({ isFormVisible: false });
     }
   }
 
   togglePackageForm() {
-    const aside = document.querySelector(".aside");
-    this.state.isFormVisible && window.innerWidth <= 960 ? aside.style.display = 'none' : aside.style.display = 'block';
+    const form = document.querySelector(".add-package");
+    this.state.isFormVisible && window.innerWidth <= 960 ? form.style.display = 'none' : form.style.display = 'block';
     this.setState({ isFormVisible: !this.state.isFormVisible });
   }
 

@@ -77,5 +77,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'add-package',
   validate,
-  initialValues: {provider: "PPSA"}
+  initialValues: {provider: "PPSA"},
+  shouldValidate: () => true
 })(AddPackage))

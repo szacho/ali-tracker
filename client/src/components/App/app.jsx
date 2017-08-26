@@ -19,9 +19,7 @@ class App extends Component {
       <div>
         <Navbar token={this.props.token} />
         <div className="main-container">
-          <aside className="aside">
-            <AddPackage />
-          </aside>
+          <AddPackage />
           <main className="main-content">
             <Switch>
               <Route exact path='/info' render={() => {return <Information />}} />

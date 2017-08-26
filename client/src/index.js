@@ -20,4 +20,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-//TODO: dodaj wielu dostawców, refaktoryzacja, ustaw inne tło
+//TODO: dodaj wielu dostawców, refaktoryzacja, ustaw inne tło, krótszy format przesyłek na mob

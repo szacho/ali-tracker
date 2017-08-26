@@ -114,11 +114,6 @@ body {
   margin-top: 20px;
   font-size: 2rem; }
 
-.aside {
-  width: 30%;
-  height: 100%;
-  padding: 20px 15px 0 15px; }
-
 .main-content {
   width: 70%;
   height: 100%;
@@ -130,10 +125,6 @@ body {
   .main-content {
     width: auto;
     padding: 20px 10px; }
-  .aside {
-    width: auto;
-    padding: 20px 10px 0 10px;
-    display: none; }
   .main-container {
     flex-direction: column; } }
 
@@ -292,7 +283,9 @@ body {
 .add-package {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  width: 30%;
+  padding: 20px 15px 0 15px; }
 
 .add-package_radio-group {
   display: flex;
@@ -364,7 +357,9 @@ body {
     width: 20%;
     min-width: 80px; }
   .add-package {
-    width: 100%; } }
+    width: auto;
+    padding: 20px 10px 0 10px;
+    display: none; } }
 
 .package-card {
   box-sizing: border-box;
@@ -424,11 +419,7 @@ body {
   padding: 12px;
   background: #f2dede;
   color: #a94442;
-  margin: 20px 0;
+  margin-bottom: 20px;
   border: 1px solid #ebccd1;
   border-radius: 3px;
   font-size: 1.05rem; }
-
-@media only screen and (max-width: 960px) {
-  .message {
-    margin-top: 0; } }

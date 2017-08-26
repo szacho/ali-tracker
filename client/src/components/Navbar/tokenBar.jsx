@@ -11,7 +11,7 @@ class TokenBar extends Component {
       tokenInputValue: '',
       navigateTo: false
     };
-    this.inputTokenLoad = _.debounce(this.inputTokenLoad, 250, {maxWait: 1500});
+    this.inputTokenLoad = _.debounce(this.inputTokenLoad, 400, {maxWait: 1500});
   }
 
   componentDidMount() {
@@ -26,7 +26,7 @@ class TokenBar extends Component {
 
   handleTokenInputChange(e) {
     console.log('hello');
-    this.setState({ tokenInputValue: e.target.value.trim() }, () => {
+    this.setState({ tokenInputValue: e.target.value.trim().toLowerCase() }, () => {
       this.inputTokenLoad(this.state.tokenInputValue);
     });
   }
