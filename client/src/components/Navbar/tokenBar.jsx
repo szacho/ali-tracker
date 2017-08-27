@@ -50,9 +50,9 @@ class TokenBar extends Component {
 
   render() {
     return (
-      <div className="token-bar">
+      <div className="token-bar l-flex">
         { this.state.navigateTo && <Redirect to={this.state.navigateTo}/> }
-        <input className="token-bar_input" onFocus={this.handleTokenInputFocus.bind(this)} onChange={this.handleTokenInputChange.bind(this)} value={this.state.tokenInputValue} type="text" placeholder="twój kod"  />
+        <input className="token-bar--input" onFocus={this.handleTokenInputFocus.bind(this)} onChange={this.handleTokenInputChange.bind(this)} value={this.state.tokenInputValue} type="text" placeholder="twój kod"  />
       </div>
     );
   }

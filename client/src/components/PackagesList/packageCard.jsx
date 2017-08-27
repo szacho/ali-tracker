@@ -5,9 +5,10 @@ import * as actions from '../../actions';
 class PackageCard extends Component {
   renderEvents(ev) {
     return ev.map((event, i) => {
+      console.log(event.code);
       return(
-        <li className="package-card_event" key={i}>
-          <span>{ event.eventName } w <span className="package-card_event-place">{ event.place ? event.place : '[brak danych]' }</span></span> <span className="package-card_event-date">{ event.time }</span>
+        <li className="package-events--event l-flex-between" key={i}>
+          <span>{ event.eventName } w <span className="package-events--event-place l-bold">{ event.place ? event.place : '[brak danych]' }</span></span> <span className="package-events--event-date">{ event.time }</span>
         </li>
       );
     });
@@ -21,12 +22,12 @@ class PackageCard extends Component {
   render() {
     return(
       <div className="package-card">
-        <div className="package-card_number-wrapper">
-          <span className="package-card_number">{ this.props.pack.number }</span>
-          <button className="remove-btn" title="Usuń" onClick={this.handleRemoveButtonClick.bind(this)}></button>
+        <div className="l-flex-between">
+          <span className="package-card--number">{ this.props.pack.number }</span>
+          <button className="close-btn l-flex" title="Usuń" onClick={this.handleRemoveButtonClick.bind(this)}></button>
         </div>
-        <span className="package-card_name">{ this.props.pack.name }</span>
-        <ul className="package-card_events">
+        <span className="package-card--name">{ this.props.pack.name }</span>
+        <ul className="package-events">
           {this.renderEvents(this.props.pack.events)}
         </ul>
       </div>

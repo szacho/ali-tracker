@@ -1,0 +1,46 @@
+#navbar
+  background: $main-red
+  height: 43px
+  width: 100%
+  font-size: 1.8rem
+  color: #fff
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px rgba(0,0,0,0.24)
+  z-index: 101
+
+#main
+  max-width: 960px
+  height: 100%
+  margin: 0 auto
+  margin-top: 20px
+  font-size: 2rem
+
++mQ(960px)
+  #main
+    margin: 0
+    flex-direction: column
+  #navbar
+    height: auto
+
+.l-flex
+  display: flex
+
+.l-flex-between
+  @extend .l-flex
+  justify-content: space-between
+
+.l-bold
+  font-weight: 700
+
+.l-georgian-list
+  list-style-type: georgian
+
+.l-mobile-item
+  display: none
++mQ(960px)
+  .l-mobile-item
+    display: list-item
+
+.l-red-link
+  color: #E53935
+  &:hover
+    text-decoration: underline

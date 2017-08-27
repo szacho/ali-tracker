@@ -6,22 +6,22 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 const renderInput = ({ input, label, type, id, meta: { touched, error } }) => (
-  <div className="add-package_form-group">
-    <label className="add-package_form-label" htmlFor={id}>{label}</label>
-    <input {...input} className={`add-package_input ${(error && touched) ? "add-package_input--error" : ""}`} id={id} type={type}/>
-    { touched && error && <span className="error_label">{error}</span> }
+  <div className="add-package--field l-flex">
+    <label className="add-package--label" htmlFor={id}>{label}</label>
+    <input {...input} className={`add-package--input ${(error && touched) ? "is-error" : ""}`} id={id} type={type}/>
+    { touched && error && <span className="add-package--label-error">{error}</span> }
   </div>
 );
 
 const renderRadioInput = ({ input, label, type, id, title }) => (
   <div>
     <input id={label} {...input} type={type}/>
-    <label className="add-package_form-label" title={title} htmlFor={label}>{label}</label>
+    <label title={title} htmlFor={label}>{label}</label>
   </div>
 );
 
 const NavSubmitButton = withRouter(({ history }) => (
-  <button className="add-package_submit-btn" title="Dodaj przesyłkę" onClick={() => history.push('/')}>Dodaj</button>
+  <button className="add-package--submit" title="Dodaj przesyłkę" onClick={() => history.push('/')}>Dodaj</button>
 ));
 
 class AddPackage extends Component {
@@ -40,9 +40,9 @@ class AddPackage extends Component {
   render() {
     const { handleSubmit } = this.props;
     return(
-      <form className="add-package" onSubmit={handleSubmit(this.handleAddPackage.bind(this))}>
+      <form className="add-package l-flex" onSubmit={handleSubmit(this.handleAddPackage.bind(this))}>
 
-        <div className="add-package_radio-group">
+        <div className="add-package--providers l-flex">
           <Field name="provider" component={renderRadioInput} title="Poczta Polska" value='PPSA' label="PPSA" type="radio" />
           <Field name="provider" component={renderRadioInput} title="Kurier DHL" value='DHL' label="DHL" type="radio" />
           <Field name="provider" component={renderRadioInput} title="Kurier UPS" value='UPS' label="UPS" type="radio" />

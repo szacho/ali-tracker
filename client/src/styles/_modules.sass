@@ -1,33 +1,9 @@
-@import "variables.sass"
-.main-header
-  font-size: 1.65rem
-  display: flex
-  align-items: center
-  color: #556
-  &::before
-    content: ''
-    display: inline-block
-    width: 4px
-    margin-right: 6px
-    height: 32px
-    background: $main-red
-    border-radius: 2px
-
-.description
-  font-size: 1.1rem
-  line-height: 150%
-  margin: 10px 0 0 10px
-
-.link--red
-  color: #E53935
-
-.remove-btn
+.close-btn
   border: none
   padding: 0
   background: transparent
   width: 15px
   height: 15px
-  display: flex
   align-items: center
   justify-content: center
   transform: scale(0.75)
@@ -49,8 +25,19 @@
   &::after
     transform: rotate(-45deg)
     left: -1.25px
-.remove-btn--red
-  transform: scale(0.7)
-  &:before, &:after
-    top: -4px
-    background: #c96664
+  &.is-message
+    transform: scale(0.7)
+    &:hover::before, &:hover::after
+      background: $hover-red
+    &:before, &:after
+      top: -4px
+      background: #c96664
+
+@import modules/nav
+@import modules/token
+@import modules/main
+@import modules/todo
+@import modules/features
+@import modules/addPackage
+@import modules/package
+@import modules/message

@@ -1,0 +1,27 @@
+.token-bar
+  align-items: center
+  &--input
+    margin: 0
+    padding: 3px 8px
+    font-size: 1.0rem
+    height: 16px
+    width: 120px
+    text-align: center
+    text-transform: lowercase
+    border: 1px solid #ddd
+    border-radius: 3px
+    letter-spacing: 1.2px
+
++mQ(600px)
+  .token-bar
+    order: 2
+    width: 100%
+    &--input
+      width: 100%
+      border: none
+      border-radius: 0
+      background: $hover-red
+      color: #fff
+      font-weight: bold
+      &::placeholder
+        color: #fff

@@ -1,0 +1,38 @@
+.package-card
+  box-sizing: border-box
+  background: $bckg-first-white
+  width: 100%
+  border: 1px solid
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5
+  border-radius: 3px
+  display: flex
+  flex-direction: column
+  padding: 12px
+  &:not(:first-child)
+    margin-top: 20px
+
+  &--number
+    font-size: 0.8rem
+    padding-bottom: 2px
+    color: $hover-red
+    text-transform: uppercase
+    font-weight: bold
+
+  &--name
+    border-bottom: 1px solid #dfe0e4
+    padding-bottom: 4px
+    margin-top: 2px
+    font-size: 1.2rem
+    word-wrap: break-word
+
+.package-events
+  margin-top: 8px
+  &--event
+    font-size: 1rem
+    padding-top: 3px
+    line-height: 125%
+    &-place
+      white-space: nowrap
+    &-date
+      white-space: nowrap
+      margin-left: 8px

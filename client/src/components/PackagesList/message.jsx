@@ -7,7 +7,7 @@ class Message extends Component {
     return(
       <div className="message">
         <span>{this.props.error}</span>
-        <button className="remove-btn remove-btn--red" title="Zamknij" onClick={this.props.removeMessage.bind(this)}></button>
+        <button className="close-btn is-message l-flex" title="Zamknij" onClick={this.props.removeMessage.bind(this)}></button>
       </div>
     );
   }

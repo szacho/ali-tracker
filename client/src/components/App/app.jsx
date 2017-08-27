@@ -18,16 +18,14 @@ class App extends Component {
     return (
       <div>
         <Navbar token={this.props.token} />
-        <div className="main-container">
+        <main id="main" className="l-flex">
           <AddPackage />
-          <main className="main-content">
-            <Switch>
-              <Route exact path='/info' render={() => {return <Information />}} />
-              <Route exact path='/' render={() => (this.props.token ? ( <Redirect to={`/${this.props.token}`} /> ) : ( <Introduction token={this.props.token} /> ))} />
-              <Route path='/:token' component={PackageList} />
-            </Switch>
-          </main>
-        </div>
+          <Switch>
+            <Route exact path='/info' render={() => {return <Information />}} />
+            <Route exact path='/' render={() => (this.props.token ? ( <Redirect to={`/${this.props.token}`} /> ) : ( <Introduction token={this.props.token} /> ))} />
+            <Route path='/:token' component={PackageList} />
+          </Switch>
+        </main>
       </div>
     );
   }

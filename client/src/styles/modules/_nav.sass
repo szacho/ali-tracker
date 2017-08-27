@@ -1,0 +1,44 @@
+.nav
+  max-width: 960px
+  margin: 0 auto
+  padding-left: 10px
+  align-items: center
+  flex-wrap: wrap
+  &--item
+    height: 43px
+    width: calc(43px*1.17)
+    background: $main-red
+  &--link
+    transition: 0.2s ease-out all
+    height: 100%
+    align-items: center
+    justify-content: center
+    &:hover, &.is-active
+      background: $hover-red !important
+    &-img
+      height: 43.2%
+      width: auto
+  &--btn
+    @extend .nav--item
+    @extend .nav--link
+    border: none
+    padding: 0
+    &:hover
+      background: $hover-red
+      cursor: pointer
+    &-img
+      height: 50.2%
+      width: 43.2%
+
++mQ(600px)
+  .nav
+    justify-content: space-between
+    padding: 0
+    &--logo
+      margin-left: 5px
+
++mQ(350px)
+  .nav
+    justify-content: center
+    &--logo
+      display: none

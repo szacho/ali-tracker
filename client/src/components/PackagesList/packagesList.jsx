@@ -19,18 +19,18 @@ class PackageList extends Component {
         return <PackageCard pack={pack} key={pack.number} />;
       });
     } else if(this.props.token.packages && this.props.token.packages.length === 0) {
-      return <h1 className="main-header">Aktualnie nie śledzisz żadnych przesyłek</h1>
+      return <h1 className="main--header">Aktualnie nie śledzisz żadnych przesyłek</h1>
     } else {
-      return <h1 className="main-header">Wczytywanie...</h1>
+      return <h1 className="main--header">Wczytywanie...</h1>
     }
   }
 
   render() {
     return(
-      <div className="packages-list">
+      <section className="packages">
         { this.props.error && <Message error={this.props.error} /> }
         {this.renderPackages()}
-      </div>
+      </section>
     );
   }
 }

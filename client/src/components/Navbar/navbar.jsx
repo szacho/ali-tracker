@@ -18,11 +18,14 @@ class Navbar extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
   }
+  componentDidUnmount() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+  }
 
   handleResize(e) {
     const form = document.querySelector(".add-package");
     if(window.innerWidth > 960 && !this.state.isFormVisible) {
-      form.style.display = "block";
+      form.style.display = "flex";
       this.setState({ isFormVisible: true });
     } else if(!form.style.display && window.innerWidth <= 960) {
       this.setState({ isFormVisible: false });
@@ -31,34 +34,34 @@ class Navbar extends Component {
 
   togglePackageForm() {
     const form = document.querySelector(".add-package");
-    this.state.isFormVisible && window.innerWidth <= 960 ? form.style.display = 'none' : form.style.display = 'block';
+    this.state.isFormVisible && window.innerWidth <= 960 ? form.style.display = 'none' : form.style.display = 'flex';
     this.setState({ isFormVisible: !this.state.isFormVisible });
   }
 
   render() {
     const isFormActive = this.state.isFormVisible;
     return(
-      <header className="app-bar">
-        <div className="nav-container">
+      <header id="navbar">
+        <div className="nav l-flex-between">
           <Link to='/'>
-            <span className="app-logo">AliTracker</span>
+            <span className="nav--logo">AliTracker</span>
           </Link>
           <TokenBar />
           <nav>
-            <ul className="nav-links">
-              <li className="nav-links_item mobile-only-li">
-                <button onClick={this.togglePackageForm.bind(this)} className={`nav-links_btn ${isFormActive ? 'nav-links_link--active' : ''}`} title="Dodaj przesyłkę">
-                  <img src={plusImg} alt="dodaj przesyłkę"/>
+            <ul className="l-flex">
+              <li className="nav--item l-mobile-item">
+                <button onClick={this.togglePackageForm.bind(this)} className={`nav--btn ${isFormActive ? 'is-active' : ''}`} title="Dodaj przesyłkę">
+                  <img className="nav--btn-img" src={plusImg} alt="dodaj przesyłkę"/>
                 </button>
               </li>
-              <li className="nav-links_item">
-                <NavLink className="nav-links_link" title="Twoje przesyłki" activeClassName="nav-links_link--active" exact to={`/${this.props.token ? this.props.token : ''}`}>
-                <img className="nav-links_img" src={listImg} alt="lista przesyłek"/>
+              <li className="nav--item">
+                <NavLink className="nav--link l-flex" title="Twoje przesyłki" activeClassName="is-active" exact to={`/${this.props.token ? this.props.token : ''}`}>
+                <img className="nav--link-img" src={listImg} alt="lista przesyłek"/>
                 </NavLink>
               </li>
-              <li className="nav-links_item">
-                <NavLink className="nav-links_link" title="Informacje" activeClassName="nav-links_link--active" exact to="/info">
-                <img className="nav-links_img" src={infoImg} alt="info"/>
+              <li className="nav--item">
+                <NavLink className="nav--link l-flex" title="Informacje" activeClassName="is-active" exact to="/info">
+                <img className="nav--link-img" src={infoImg} alt="info"/>
                 </NavLink>
               </li>
               <SignOut />
