@@ -50,7 +50,7 @@ class Navbar extends Component {
           <nav>
             <ul className="l-flex">
               <li className="nav--item l-mobile-item">
-                <button onClick={this.togglePackageForm.bind(this)} className={`nav--btn ${isFormActive ? 'is-active' : ''}`} title="Dodaj przesyłkę">
+                <button onClick={this.togglePackageForm.bind(this)} className={`nav--btn l-flex ${isFormActive ? 'is-active' : ''}`} title="Dodaj przesyłkę">
                   <img className="nav--btn-img" src={plusImg} alt="dodaj przesyłkę"/>
                 </button>
               </li>

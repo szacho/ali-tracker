@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class PackageCard extends Component {
+
   renderEvents(ev) {
     return ev.map((event, i) => {
+      const importantCodes = ["P_A", "P_PA", "P_D", "P_OWU", "P_PZL"];
       console.log(event.code);
       return(
-        <li className="package-events--event l-flex-between" key={i}>
+        <li className={`package-events--event l-flex-between ${importantCodes.includes(event.code) ? 'is-important' : ''}`} key={i}>
           <span>{ event.eventName } w <span className="package-events--event-place l-bold">{ event.place ? event.place : '[brak danych]' }</span></span> <span className="package-events--event-date">{ event.time }</span>
         </li>
       );
